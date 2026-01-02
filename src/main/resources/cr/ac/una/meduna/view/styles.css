@@ -1,0 +1,845 @@
+*{
+    -fx-primary: #4A90E2;        /* Azul cielo - Principal */
+    -fx-primary-light: #6BB3F2;  /* Azul claro - Hover */
+    -fx-secondary: #50C9B2;      /* Verde agua - Secundario */
+    -fx-accent: #A0E6D8;         /* Verde suave - Acentos */
+    
+    -fx-white: #FFFFFF;          
+    -fx-gray-light: #E5E5E5;     
+    -fx-gray: #9E9E9E;           
+    -fx-gray-dark: #333333;      
+    -fx-black: #212121;          
+    
+    -fx-success: #4CAF50;        
+    -fx-warning: #FFC107;        
+    -fx-error: #F44336;          
+    -fx-info: #2196F3;           
+    
+    -fx-text-primary: #333333;    
+    -fx-text-on-primary: #FFFFFF; 
+}
+
+
+/* DE TIPO */
+
+/* SOBREESCRITURAS */
+/* ============================================
+   MFXComboBox - Personalización
+   ============================================ */
+
+/* Contenedor principal del ComboBox */
+.mfx-combo-box {
+    -mfx-main: -fx-primary;
+    -fx-background-color: -fx-white;
+    -fx-border-width: 0;
+    -fx-background-radius: 4px;
+}
+
+/* Hover sobre el ComboBox */
+.mfx-combo-box:hover {
+    -fx-border-color: -fx-primary;
+}
+
+/* ComboBox enfocado */
+.mfx-combo-box:focused {
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 2px;
+}
+
+/* Texto del ComboBox */
+.mfx-combo-box .mfx-text-field {
+    -fx-text-fill: -fx-black;
+    -fx-prompt-text-fill: -fx-gray;
+}
+
+/* Icono/Flecha del ComboBox */
+.mfx-combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.mfx-combo-box .arrow {
+    -fx-background-color: -fx-primary;
+}
+
+/* Popup del ComboBox */
+.mfx-combo-box-popup {
+    -fx-background-color: -fx-white;
+    -fx-border-color: -fx-gray-light;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 3);
+}
+
+/* Items del popup */
+.mfx-combo-box-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-primary;
+}
+
+/* Item hover */
+.mfx-combo-box-cell:hover {
+    -fx-background-color: rgba(216, 67, 21, 0.1);
+    -fx-cursor: hand;
+}
+
+/* Item seleccionado */
+.mfx-combo-box-cell:selected {
+    -fx-background-color: rgba(216, 67, 21, 0.1);
+}
+
+.mfx-combo-box-cell .data-label {
+  -fx-font-family: "Montserrat Regular";
+  -fx-text-fill: -fx-black;
+}
+
+/* ComboBox deshabilitado */
+.mfx-combo-box:disabled {
+    -fx-opacity: 0.5;
+    -fx-background-color: -fx-gray-light;
+}
+
+/* Línea flotante (floating line) */
+.mfx-combo-box .floating-line {
+    -fx-background-color: -fx-primary;
+}
+
+/* Label flotante */
+.mfx-combo-box .mfx-label {
+    -fx-text-fill: -fx-gray;
+    -fx-font-family: "Montserrat Light";
+    -fx-font-weight: BOLD;
+}
+
+.mfx-combo-box:focused .mfx-label {
+    -fx-text-fill: -fx-primary;
+}
+
+/* ============================================
+   MFXTextField - Personalización
+   ============================================ */
+
+/* Contenedor principal del TextField */
+.mfx-text-field {
+    -mfx-main: -fx-primary;
+    -mfx-float-mode: BORDER;
+    -fx-pref-height: 48px;
+    -fx-min-height: 48px;
+    -fx-max-height: 48px;
+    -fx-background-color: -fx-white;
+    -fx-border-color: -fx-gray-light;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 10px 15px;
+}
+
+/* Hover sobre el TextField */
+.mfx-text-field:hover {
+    -fx-border-color: -fx-primary;
+}
+
+/* TextField enfocado */
+.mfx-text-field:focused {
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 2px;
+    -fx-background-color: rgba(216, 67, 21, 0.02);
+}
+
+/* Texto del TextField */
+.mfx-text-field .text {
+    -fx-fill: -fx-text-primary;
+    -fx-font-family: "Montserrat Regular", sans-serif;
+}
+
+/* Placeholder/Prompt text */
+.mfx-text-field .mfx-prompt-text {
+    -fx-fill: -fx-gray;
+    -fx-font-family: "Montserrat Regular", sans-serif;
+}
+
+/* Label flotante */
+.mfx-text-field .mfx-label {
+    -fx-text-fill: -fx-gray;
+    -fx-font-family: "Montserrat Regular", sans-serif;
+}
+
+.mfx-text-field:focused .mfx-label {
+    -fx-text-fill: -fx-primary;
+}
+
+/* Línea flotante (floating line) */
+.mfx-text-field .floating-line {
+    -fx-background-color: -fx-primary;
+    -fx-pref-height: 2px;
+}
+
+/* Icono leading (izquierda) */
+.mfx-text-field .leading-icon {
+    -fx-fill: -fx-gray;
+}
+
+.mfx-text-field:focused .leading-icon {
+    -fx-fill: -fx-primary;
+}
+
+/* Icono trailing (derecha) */
+.mfx-text-field .trailing-icon {
+    -fx-fill: -fx-gray;
+}
+
+.mfx-text-field:focused .trailing-icon {
+    -fx-fill: -fx-primary;
+}
+
+/* TextField deshabilitado */
+.mfx-text-field:disabled {
+    -fx-opacity: 0.5;
+    -fx-background-color: -fx-gray-light;
+    -fx-border-color: -fx-gray-light;
+}
+
+/* TextField con error */
+.mfx-text-field.error {
+    -fx-border-color: -fx-error;
+}
+
+.mfx-text-field.error:focused {
+    -fx-border-color: -fx-error;
+}
+
+.mfx-text-field.error .mfx-label {
+    -fx-text-fill: -fx-error;
+}
+
+.mfx-text-field.error .floating-line {
+    -fx-background-color: -fx-error;
+}
+
+/* TextField con éxito */
+.mfx-text-field.success {
+    -fx-border-color: -fx-success;
+}
+
+.mfx-text-field.success:focused {
+    -fx-border-color: -fx-success;
+}
+
+/* Selección de texto */
+.mfx-text-field .text-input {
+    -fx-highlight-fill: -fx-primary-light;
+    -fx-highlight-text-fill: -fx-text-on-primary;
+}
+
+/* Botón base */
+.mfx-button,
+.mfx-button:focused,
+.mfx-button:armed {
+    -mfx-main: -fx-primary;
+    -mfx-button-type: RAISED;
+    -mfx-depth-level: LEVEL4;
+    -fx-font-weight: BOLD;
+    -fx-background-color: -fx-white;
+    -fx-text-fill: -fx-text-primary;
+    -fx-border-width: 0;
+    -fx-background-radius: 4px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Montserrat Medium", sans-serif;
+    -fx-cursor: hand;
+}
+
+.mfx-button:hover {
+    -fx-background-color: linear-gradient(to right, -fx-white, -fx-secondary);
+}
+
+.mfx-button:pressed {
+    -fx-background-color: -fx-gray;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.mfx-button:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+/* Ripple effect */
+.mfx-button .mfx-ripple-generator {
+    -fx-ripple-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   MFXCheckbox - Personalización
+   ============================================ */
+
+/* Contenedor principal del CheckBox */
+.mfx-checkbox {
+    -fx-cursor: hand;
+}
+
+/* El cuadro/box del checkbox */
+.mfx-checkbox .box {
+    -fx-background-color: -fx-white;
+    -fx-border-color: -fx-gray-light;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+/* Hover sobre el checkbox */
+.mfx-checkbox:hover .box {
+    -fx-border-color: -fx-primary;
+}
+
+/* Checkbox seleccionado */
+.mfx-checkbox:selected .box {
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-primary;
+}
+
+/* Hover sobre checkbox seleccionado */
+.mfx-checkbox:selected:hover .box {
+    -fx-background-color: -fx-primary-light;
+    -fx-border-color: -fx-primary-light;
+}
+
+/* El check/marca dentro del box */
+.mfx-checkbox .mark {
+    -fx-background-color: -fx-white;
+    -fx-shape: "M0.5,6 L3,8.5 L8.5,1";
+    -fx-scale-shape: true;
+    -fx-padding: 4px;
+}
+
+/* Texto/Label del checkbox */
+.mfx-checkbox .text {
+    -fx-fill: -fx-text-primary;
+    -fx-font-size: 14px;
+    -fx-font-family: "Montserrat Regular", sans-serif;
+}
+
+/* Ripple effect */
+.mfx-checkbox .mfx-ripple-generator {
+    -fx-ripple-color: rgba(216, 67, 21, 0.3);
+}
+
+/* Checkbox deshabilitado */
+.mfx-checkbox:disabled .box {
+    -fx-opacity: 0.5;
+    -fx-background-color: -fx-gray-light;
+    -fx-border-color: -fx-gray;
+}
+
+.mfx-checkbox:disabled .text {
+    -fx-fill: -fx-text-disabled;
+}
+
+/* DE PROYECTO */
+.fondo-main{
+    -fx-background-color: linear-gradient(to bottom, -fx-primary, -fx-secondary);
+}
+
+.container{
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 3);
+    -fx-background-radius: 5px;
+}
+
+.white-container{
+    -fx-background-color: -fx-white;
+}
+
+.glass-container {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 15px;
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 20, 0, 0, 5);
+}
+
+.glass-container-dark {
+    -fx-background-color: rgba(0, 0, 0, 0.25);
+    -fx-background-radius: 15px;
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 20, 0, 0, 5);
+}
+
+.glass-container-warm {
+    -fx-background-color: rgba(255, 167, 38, 0.1);
+    -fx-background-radius: 15px;
+    -fx-border-color: rgba(216, 67, 21, 0.3);
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(216, 67, 21, 0.2), 15, 0, 0, 3);
+}
+
+.text-black{
+    -fx-text-fill: -fx-black;
+}
+
+.text-white{
+    -fx-text-fill: -fx-text-on-primary;
+}
+
+.text-bold{
+    -fx-font-weight: BOLD;
+}
+
+.text-title{
+    -fx-font-family: "Montserrat Medium";
+    -fx-font-size: 24px;
+}
+
+.text-subtitle{
+    -fx-font-family: "Montserrat Medium";
+    -fx-font-size: 18px;
+}
+
+.text-regular{
+    -fx-font-family: "Montserrat Regular";
+    -fx-font-size: 14px;
+}
+
+.text-small{
+    -fx-font-family: "Montserrat Light";
+    -fx-font-size: 12px;
+}
+
+.text-underline{
+    -fx-underline: TRUE;
+}
+
+.mfx-text-field-primary {
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 1.5px;
+}
+
+.mfx-text-field-primary:focused {
+    -fx-border-width: 2.5px;
+    -fx-background-color: rgba(216, 67, 21, 0.05);
+}
+
+.mfx-text-field-underline {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -fx-gray-light transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.mfx-text-field-underline:focused {
+    -fx-border-color: transparent transparent -fx-primary transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+/* Botón Primary */
+.mfx-button-primary,
+.mfx-button-primary:focused,
+.mfx-button-primary:armed{
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-text-on-primary;
+    -fx-border-color: -fx-primary;
+    -fx-font-size: 14px;
+}
+
+.mfx-button-primary:hover {
+    -fx-background-color: -fx-primary-light;
+    -fx-border-color: -fx-primary-light;
+}
+
+.mfx-button-primary:pressed {
+    -fx-background-color: -fx-primary;
+}
+
+.mfx-button-primary .mfx-ripple-generator {
+    -fx-ripple-color: rgba(255, 255, 255, 0.3);
+}
+
+.mfx-button-outlined,
+.mfx-button-outlined:focused,
+.mfx-button-outlined:armed{
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-primary;
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 1.5px;
+    -fx-font-size: 14px;
+}
+
+.mfx-button-outlined:hover {
+    -fx-background-color: rgba(216, 67, 21, 0.1);
+}
+
+.mfx-button-outlined-secondary,
+.mfx-button-outlined-secondary:focused,
+.mfx-button-outlined-secondary:armed{
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-secondary;
+    -fx-border-color: -fx-secondary;
+    -fx-border-width: 1.5px;
+    -fx-font-size: 14px;
+}
+
+.mfx-button-outlined-secondary:hover {
+    -fx-background-color: rgba(245, 124, 0, 0.1);
+}
+
+.button-icon,
+.button-icon:focused,
+.button-icon:armed{
+    -fx-background-color: -fx-white;
+    -fx-background-radius: 5px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5px;
+    -fx-padding: 3px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0, 0, 2);
+    -fx-min-width: 45px;
+    -fx-min-height: 45px;
+    -fx-pref-width: 45px;
+    -fx-pref-height: 45px;
+}
+
+.button-icon-primary,
+.button-icon-primary:focused,
+.button-icon-primary:armed{
+    -fx-background-color: -fx-primary;
+}
+
+.button-icon:hover {
+    -fx-background-color: -fx-white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 12, 0, 0, 4);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.button-icon-primary:hover{
+    -fx-background-color: -fx-secondary;
+}
+
+.button-icon:pressed {
+    -fx-background-color: -fx-gray-light;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0, 0, 1);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.button-icon .text {
+    -fx-fill: transparent;
+    -fx-font-size: 0;
+}
+
+.textfield-code{
+    -fx-min-width: 40px;
+    -fx-pref-width: 40px;
+    -fx-max-width: 40px;
+    -fx-padding: 5px;
+}
+
+/* ============================================
+   ScrollPane - Personalización
+   ============================================ */
+
+/* Contenedor principal del ScrollPane */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+/* Viewport (área de contenido visible) */
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Contenido dentro del ScrollPane */
+.scroll-pane > .viewport > .content {
+    -fx-background-color: transparent;
+}
+
+/* Corner (esquina donde se juntan las barras) */
+.scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+/* ============================================
+   SCROLL BAR VERTICAL
+   ============================================ */
+
+/* Track (fondo de la barra) */
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+
+/* Thumb (la parte que se arrastra) */
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-gray-light;
+    -fx-background-radius: 8px;
+    -fx-background-insets: 2px;
+}
+
+/* Thumb hover */
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: -fx-gray;
+}
+
+/* Thumb pressed */
+.scroll-pane .scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: -fx-gray-dark;
+}
+
+/* Botones de incremento/decremento (flechas) */
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+}
+
+.scroll-pane .scroll-bar:vertical .increment-arrow,
+.scroll-pane .scroll-bar:vertical .decrement-arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+}
+
+/* ============================================
+   TableView - Personalización
+   ============================================ */
+
+/* Contenedor principal */
+.table-view {
+    -fx-background-color: -fx-white;
+    -fx-border-color: -fx-gray-light;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-table-cell-border-color: transparent;
+}
+
+/* Header de la tabla */
+.table-view .column-header-background {
+    -fx-background-color: -fx-primary-light;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: -fx-primary-light;
+}
+
+/* Columnas individuales del header */
+.table-view .column-header {
+    -fx-background-color: -fx-primary-light;
+    -fx-border-color: transparent;
+    -fx-padding: 10px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-text-primary;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Montserrat Regular", sans-serif;
+    -fx-alignment: center-left;
+}
+
+/* Líneas divisorias del header */
+.table-view .column-header-background .nested-column-header-border {
+    -fx-border-color: -fx-primary-light;
+}
+
+/* Filas de la tabla */
+.table-view .table-row-cell {
+    -fx-background-color: -fx-white;
+    -fx-border-color: transparent;
+    -fx-cell-size: 40px;
+}
+
+/* Filas alternadas (cebra) */
+.table-view .table-row-cell:odd {
+    -fx-background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Fila hover */
+.table-view .table-row-cell:hover {
+    -fx-background-color: rgba(216, 67, 21, 0.08);
+    -fx-cursor: hand;
+}
+
+/* Fila seleccionada */
+.table-view .table-row-cell:selected {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-white;
+}
+
+/* Fila seleccionada hover */
+.table-view .table-row-cell:selected:hover {
+    -fx-background-color: -fx-primary-light;
+}
+
+/* Fila seleccionada sin foco */
+.table-view:focused .table-row-cell:selected {
+    -fx-background-color: -fx-primary;
+}
+
+/* Celdas individuales */
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 8px 12px;
+    -fx-alignment: center-left;
+}
+
+.table-view .table-cell .text {
+    -fx-fill: -fx-text-primary;
+    -fx-font-size: 13px;
+    -fx-font-family: "Montserrat Medium", sans-serif;
+}
+
+/* Texto en fila seleccionada */
+.table-view .table-row-cell:selected .table-cell .text {
+    -fx-fill: -fx-white;
+}
+
+/* Placeholder (cuando no hay datos) */
+.table-view .placeholder {
+    -fx-background-color: transparent;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: -fx-gray;
+    -fx-font-size: 14px;
+    -fx-font-family: "Montserrat Regular", sans-serif;
+}
+
+/* ScrollBar de la tabla */
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-gray-light;
+    -fx-background-radius: 8px;
+}
+
+.table-view .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: -fx-gray;
+}
+
+/* Corner (esquina de scrollbars) */
+.table-view .corner {
+    -fx-background-color: -fx-gray-light;
+}
+
+/* ============================================
+   TextArea - Personalización
+   ============================================ */
+
+/* Contenedor principal del TextArea */
+.text-area {
+    -fx-background-color: -fx-white;
+    -fx-border-color: -fx-gray-light;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+    -fx-font-family: "Montserrat Regular", sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* Contenido del TextArea */
+.text-area .content {
+    -fx-background-color: -fx-white;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px;
+}
+
+/* Texto dentro del TextArea */
+.text-area .text {
+    -fx-fill: -fx-text-primary;
+}
+
+/* Hover sobre el TextArea */
+.text-area:hover {
+    -fx-border-color: -fx-primary;
+}
+
+/* TextArea enfocado */
+.text-area:focused {
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 2px;
+    -fx-background-color: rgba(216, 67, 21, 0.02);
+}
+
+/* Placeholder text */
+.text-area .prompt-text {
+    -fx-fill: -fx-gray;
+    -fx-font-family: "Montserrat Regular", sans-serif;
+}
+
+/* Selección de texto */
+.text-area .selection {
+    -fx-fill: -fx-primary-light;
+}
+
+/* Texto seleccionado */
+.text-area:focused .selection {
+    -fx-fill: -fx-primary-light;
+}
+
+/* TextArea deshabilitado */
+.text-area:disabled {
+    -fx-opacity: 0.5;
+    -fx-background-color: -fx-gray-light;
+    -fx-border-color: -fx-gray-light;
+}
+
+/* ScrollBar del TextArea */
+.text-area .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-gray-light;
+    -fx-background-radius: 8px;
+}
+
+.text-area .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: -fx-gray;
+}
+
+.text-area .scroll-bar:horizontal .track {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-bar:horizontal .thumb {
+    -fx-background-color: -fx-gray-light;
+    -fx-background-radius: 8px;
+}
+
+.text-area .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: -fx-gray;
+}
+
+/* Corner (esquina de scrollbars) */
+.text-area .corner {
+    -fx-background-color: transparent;
+}
+
+/* Ocultar botones de scroll */
+.text-area .scroll-bar .increment-button,
+.text-area .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+}
+
+.text-area .scroll-bar .increment-arrow,
+.text-area .scroll-bar .decrement-arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+}

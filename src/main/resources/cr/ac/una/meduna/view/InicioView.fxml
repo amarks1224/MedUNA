@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.meduna.controller.InicioController">
+   <stylesheets>
+      <URL value="@../../../../../../../../../../RestUNA/RestUNA/src/main/resources/cr/ac/una/restuna/view/styles.css" />
+   </stylesheets>
+   <children>
+      <VBox alignment="CENTER" layoutX="337.0" layoutY="137.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="glass-container" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="5.0" left="30.0" right="60.0" top="5.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../RestUNA/RestUNA/src/main/resources/cr/ac/una/restuna/resources/images/User-Icon-96.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Label fx:id="lblTitulo" text="Iniciar Sesión">
+                           <styleClass>
+                              <String fx:value="text-title" />
+                              <String fx:value="text-white" />
+                              <String fx:value="text-bold" />
+                           </styleClass>
+                        </Label>
+                        <Label fx:id="lblSubtitulo" text="RestUNA">
+                           <styleClass>
+                              <String fx:value="text-subtitle" />
+                              <String fx:value="text-white" />
+                           </styleClass>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="40.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <padding>
+                  <Insets bottom="5.0" left="60.0" right="60.0" top="5.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../RestUNA/RestUNA/src/main/resources/cr/ac/una/restuna/resources/images/Users-Icon-W-48.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <padding>
+                  <Insets bottom="5.0" left="60.0" right="60.0" top="5.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../RestUNA/RestUNA/src/main/resources/cr/ac/una/restuna/resources/images/Pass-Icon-48.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="5.0" left="60.0" right="60.0" top="5.0" />
+               </padding>
+               <children>
+                  <VBox>
+                     <children>
+                        <Hyperlink fx:id="linkAcercaDe" onAction="#onActionLinkAcercaDe" onTouchPressed="#onTouchPressedLinkRecuperacion" text="Acerda de">
+                           <styleClass>
+                              <String fx:value="text-white" />
+                              <String fx:value="text-bold" />
+                              <String fx:value="text-underline" />
+                              <String fx:value="text-regular" />
+                           </styleClass>
+                        </Hyperlink>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnIngresar" maxWidth="200.0" onAction="#onActionBtnIngresar" onTouchPressed="#onTouchPressedBtnIngresar" text="Ingresar" HBox.hgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../RestUNA/RestUNA/src/main/resources/cr/ac/una/restuna/resources/images/Login-Icon-P-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

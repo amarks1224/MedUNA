@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="BOTTOM_CENTER" prefHeight="514.0" prefWidth="255.0" styleClass="white-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.meduna.controller.MenuController">
+   <children>
+      <VBox alignment="CENTER" prefWidth="200.0" spacing="25.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnMenu" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="button-icon" text="Button">
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/MedUNA.jpg" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Label fx:id="lblTitulo" text="MedUNA">
+                           <styleClass>
+                              <String fx:value="text-black" />
+                              <String fx:value="text-title" />
+                              <String fx:value="text-bold" />
+                           </styleClass>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label fx:id="lblTitulo1" text="“Cuidando la salud, ">
+                     <styleClass>
+                        <String fx:value="text-black" />
+                        <String fx:value="text-regular" />
+                        <String fx:value="text-bold" />
+                     </styleClass>
+                  </Label>
+                  <Label fx:id="lblTitulo11" layoutX="10.0" layoutY="71.0" text="optimizando la gestión.”">
+                     <styleClass>
+                        <String fx:value="text-black" />
+                        <String fx:value="text-regular" />
+                        <String fx:value="text-bold" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </VBox>
+            <Separator prefWidth="200.0" />
+            <MFXButton fx:id="btnCitas" maxWidth="1.7976931348623157E308" onAction="#onActionBtnCitas" onTouchPressed="#onTouchPressedBtnSalones" prefHeight="41.0" prefWidth="278.0" styleClass="mfx-button-primary" text="Citas">
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="btnPacientes" maxWidth="1.7976931348623157E308" onAction="#onActionBtnPacientes" onTouchPressed="#onTouchPressedBtnPedidos" styleClass="mfx-button-primary" text="Pacientes">
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="btnMedicos" maxWidth="1.7976931348623157E308" onAction="#onActionBtnMedicos" onTouchPressed="#onTouchPressedBtnCajas" styleClass="mfx-button-primary" text="Medicos">
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="btnEspecialidades" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEspecialidades" onTouchPressed="#onTouchPressedBtnFacturacion" styleClass="mfx-button-primary" text="Especialidades">
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="btnEstadisticas" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEstadisticas" onTouchPressed="#onTouchPressedBtnReportes" styleClass="mfx-button-primary" text="Estadisticas">
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
+            </MFXButton>
+            <MFXButton fx:id="btnSalir" maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" onTouchPressed="#onTouchPressedBtnCerrarSesion" styleClass="mfx-button-outlined" text="Salir">
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
+            </MFXButton>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>
