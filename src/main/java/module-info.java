@@ -17,6 +17,7 @@ module cr.ac.una.meduna {
 
     requires java.sql;
     requires java.naming;
+    requires java.base;
 
     opens cr.ac.una.meduna.controller to javafx.fxml;
     opens cr.ac.una.meduna.util to javafx.fxml;

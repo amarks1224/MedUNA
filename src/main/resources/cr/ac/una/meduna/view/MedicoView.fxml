@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.meduna.controller.MedicoController">
+   <stylesheets>
+      <URL value="@../../../../../../../../../RestUNA/RestUNA/src/main/resources/cr/ac/una/restuna/view/styles.css" />
+   </stylesheets>
+   <children>
+      <VBox alignment="TOP_CENTER" spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <styleClass>
+            <String fx:value="white-container" />
+            <String fx:value="container" />
+         </styleClass>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="NEVER">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/images/Users-Icon-48.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Médicos">
+                     <styleClass>
+                        <String fx:value="text-title" />
+                        <String fx:value="text-bold" />
+                     </styleClass>
+                  </Label>
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnBuscarMedico" maxWidth="154.0" onAction="#onActionBtnBuscarMedico" prefHeight="45.0" prefWidth="154.0" styleClass="mfx-button-primary" text="Buscar médico">
+                           <padding>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/Search-Icon-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
+               <styleClass>
+                  <String fx:value="container" />
+                  <String fx:value="white-container" />
+               </styleClass>
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="262.0" prefWidth="0.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXTextField fx:id="txfCodigo" floatingText="Código" maxWidth="1.7976931348623157E308" onKeyPressed="#onKeyPressedTxtId" />
+                        <MFXTextField fx:id="txfNombre" floatingText="Nombre" maxWidth="1.7976931348623157E308" prefWidth="278.0" />
+                        <MFXTextField fx:id="txfApellido" floatingText="Apellido" maxWidth="1.7976931348623157E308" prefWidth="278.0" />
+                        <MFXComboBox fx:id="cmbEspecialidad" floatingText="Especialidad" maxWidth="1.7976931348623157E308" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+                  <Separator orientation="VERTICAL" />
+                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXRadioButton fx:id="rdbActivo" selected="true" text="Activo">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="tggGenero" />
+                           </toggleGroup>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </MFXRadioButton>
+                        <MFXTextField fx:id="txfTelefono" floatingText="Teléfono" maxWidth="1.7976931348623157E308" />
+                        <MFXTextField fx:id="txfCorreo" floatingText="Correo" maxWidth="1.7976931348623157E308" />
+                        <MFXTextField fx:id="txfNumColegiado" floatingText="Número colegiado" maxWidth="1.7976931348623157E308" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox VBox.vgrow="NEVER">
+               <children>
+                  <MFXButton fx:id="btnNuevo" maxWidth="120.0" onAction="#onActionBtnNuevo" styleClass="mfx-button-primary" text="Nuevo" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/New-Icon-24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <MFXButton fx:id="btnEliminar" maxWidth="120.0" onAction="#onActionBtnEliminar" styleClass="mfx-button-primary" text="Eliminar" HBox.hgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/Delete-Icon-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="btnGuardar" maxWidth="120.0" onAction="#onActionBtnGuardar" styleClass="mfx-button-primary" text="Guardar" HBox.hgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/Save-Icon-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

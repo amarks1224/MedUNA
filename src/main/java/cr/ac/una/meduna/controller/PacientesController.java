@@ -49,13 +49,13 @@ public class PacientesController extends Controller implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private MFXButton btnBuscarPaciente;
-    @FXML
     private MFXTextField txfId;
     @FXML
     private MFXTextField txfCedula;
     @FXML
     private MFXTextField txfNombre;
+    @FXML
+    private MFXTextField txfApellido;
     @FXML
     private MFXComboBox<String> cmbTipoSangre;
     @FXML
@@ -89,10 +89,6 @@ public class PacientesController extends Controller implements Initializable {
             "A+", "AB+", "B+", "O+", "A-", "AB-", "B-", "O-"
     );
     
-    @FXML
-    private MFXTextField txfApellido;
-   
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbTipoSangre.setItems(tiposSangre);
@@ -108,7 +104,6 @@ public class PacientesController extends Controller implements Initializable {
          UIAnimator.slideInLeft(root);
     } 
 
-    @FXML
     private void onActionBtnBuscarPaciente(ActionEvent event) {
         buscarPaciente();
     }
@@ -429,6 +424,4 @@ public class PacientesController extends Controller implements Initializable {
             }
         }
     }
-
-
 }
