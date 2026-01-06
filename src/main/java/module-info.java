@@ -1,22 +1,30 @@
 module cr.ac.una.meduna {
-
-    /* JavaFX */
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
-
-    /* Logging */
     requires java.logging;
-
-    /* MaterialFX */
     requires MaterialFX;
-    requires java.base;
 
-    /* FXML access */
+    requires jakarta.persistence;
+    requires org.eclipse.persistence.jpa;
+    requires org.eclipse.persistence.core;
+
+    requires jakarta.json.bind;
+    requires jakarta.json;
+    requires jakarta.annotation;
+    requires jakarta.ws.rs;
+     requires jakarta.inject;
+
+    requires java.sql;
+    requires java.naming;
+
     opens cr.ac.una.meduna.controller to javafx.fxml;
     opens cr.ac.una.meduna.util to javafx.fxml;
+    opens cr.ac.una.meduna.model to org.eclipse.persistence.core, org.eclipse.persistence.jpa, jakarta.json.bind;
 
-    /* Exports */
     exports cr.ac.una.meduna;
+    exports cr.ac.una.meduna.controller;
+    exports cr.ac.una.meduna.model;
+    exports cr.ac.una.meduna.service;
     exports cr.ac.una.meduna.util;
 }

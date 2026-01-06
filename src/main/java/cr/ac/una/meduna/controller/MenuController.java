@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.meduna.controller;
 
+import cr.ac.una.meduna.util.FlowController;
+import cr.ac.una.meduna.util.UIAnimator;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,18 +29,24 @@ public class MenuController extends Controller implements Initializable {
     private MFXButton btnEstadisticas;
     @FXML
     private MFXButton btnSalir;
+    
+    private ResourceBundle bundle;
+    private String ventanaActual;
+    private MFXButton botonMenuActual;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        bundle = rb;
+        this.ventanaActual = "";
     }    
     
      @Override
     public void initialize() {
-        // TODO
+        super.initialize();
+
     }    
 
     @FXML
@@ -55,6 +59,7 @@ public class MenuController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnPacientes(ActionEvent event) {
+        openWindowAtCenter(btnPacientes, "PacientesView");
     }
 
     @FXML
@@ -93,5 +98,21 @@ public class MenuController extends Controller implements Initializable {
     private void onTouchPressedBtnCerrarSesion(TouchEvent event) {
     }
     
-    
+    private void openWindowAtCenter(MFXButton botonMenu, String nombreVentana) {
+
+        if (nombreVentana.equals(ventanaActual)) {
+            return;
+        }
+
+        if (botonMenuActual != null) {
+            botonMenuActual.setStyle("");
+        }
+
+        botonMenuActual = botonMenu;
+        botonMenuActual.setStyle("-fx-background-color: -fx-secondary;");
+
+        ventanaActual = nombreVentana;
+        FlowController.getInstance().goView(ventanaActual);
+    }
+
 }

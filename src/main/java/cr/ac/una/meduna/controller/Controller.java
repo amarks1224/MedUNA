@@ -1,5 +1,6 @@
 package cr.ac.una.meduna.controller;
 
+import java.util.ResourceBundle;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyCode;
@@ -11,7 +12,11 @@ public abstract class Controller {
     private Stage stage;
     private String accion;
     private String nombreVista;
+    protected ResourceBundle bundle;
 
+    // ======================
+    // Getters / Setters
+    // ======================
     public String getAccion() {
         return accion;
     }
@@ -36,6 +41,9 @@ public abstract class Controller {
         this.nombreVista = nombreVista;
     }
 
+    // ======================
+    // Utilidades
+    // ======================
     public void sendTabEvent(KeyEvent event) {
         event.consume();
         KeyEvent keyEvent = new KeyEvent(
@@ -51,21 +59,25 @@ public abstract class Controller {
         ((Control) event.getSource()).fireEvent(keyEvent);
     }
 
+    // ======================
+    // Inicialización manual
+    // (usada por FlowController)
+    // ======================
     public void initialize() {
-        // Inicialización básica del controlador
+        // Se sobreescribe en controladores hijos si se necesita
     }
 
+    // ======================
+    // Root (si FlowController lo usa)
+    // ======================
     public Node getRoot() {
         return null;
     }
 
-    /**
-     * Limpia recursos del controlador.
-     * Llamar cuando se cierra/destruye la vista.
-     */
+    // ======================
+    // Limpieza (opcional)
+    // ======================
     public void cleanup() {
-        // Nada que limpiar por ahora
+        // Para liberar recursos si se requiere
     }
 }
-
-
