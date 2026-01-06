@@ -76,6 +76,7 @@ public class MenuController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnEspecialidades(ActionEvent event) {
+        openWindowAtCenter(btnEspecialidades, "EspecialidadView");
     }
 
     @FXML
@@ -84,6 +85,7 @@ public class MenuController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnEstadisticas(ActionEvent event) {
+        
     }
 
     @FXML

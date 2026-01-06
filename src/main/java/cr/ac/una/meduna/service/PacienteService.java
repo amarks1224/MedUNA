@@ -16,7 +16,6 @@ public class PacienteService {
     private static final Logger logger = Logger.getLogger(PacienteService.class.getName());
     private EntityManager em;
 
-    /* ===================== GET POR ID ===================== */
     public Respuesta getPacienteById(Long idPaciente) {
         try {
             em = EntityManagerHelper.getInstance().getManager();
@@ -40,7 +39,6 @@ public class PacienteService {
         }
     }
 
-    /* ===================== GET TODOS ===================== */
     public Respuesta getPacientes() {
         try {
             em = EntityManagerHelper.getInstance().getManager();
@@ -65,7 +63,6 @@ public class PacienteService {
         }
     }
 
-    /* ===================== GET POR NOMBRE ===================== */
     public Respuesta getPacientesByNombre(String nombre) {
         try {
             em = EntityManagerHelper.getInstance().getManager();
@@ -95,7 +92,6 @@ public class PacienteService {
         }
     }
 
-    /* ===================== GET POR CÉDULA ===================== */
     public Respuesta getPacienteByCedula(String cedula) {
         try {
             em = EntityManagerHelper.getInstance().getManager();
@@ -122,7 +118,6 @@ public class PacienteService {
         }
     }
 
-    /* ===================== GET CON FILTROS ===================== */
     public Respuesta getPacientesByFilters(String nombre, String cedula) {
         try {
             em = EntityManagerHelper.getInstance().getManager();
@@ -164,7 +159,6 @@ public class PacienteService {
         }
     }
 
-    /* ===================== GUARDAR ===================== */
     public Respuesta guardarPaciente(PacienteDTO pacienteDTO) {
         try {
             em = EntityManagerHelper.getInstance().getManager();
@@ -173,7 +167,6 @@ public class PacienteService {
             PacienteEntity entity;
             
             if (pacienteDTO.getIdPaciente() != null && pacienteDTO.getIdPaciente() > 0) {
-                // Actualizar paciente existente
                 entity = em.find(PacienteEntity.class, pacienteDTO.getIdPaciente());
                 if (entity == null) {
                     em.getTransaction().rollback();
@@ -182,7 +175,6 @@ public class PacienteService {
                 entity.actualizar(pacienteDTO);
                 entity = em.merge(entity);
             } else {
-                // Crear nuevo paciente
                 entity = new PacienteEntity(pacienteDTO);
                 em.persist(entity);
             }
@@ -205,7 +197,6 @@ public class PacienteService {
         }
     }
 
-    /* ===================== ELIMINAR ===================== */
     public Respuesta eliminarPaciente(Long idPaciente) {
         try {
             em = EntityManagerHelper.getInstance().getManager();
@@ -236,12 +227,10 @@ public class PacienteService {
         }
     }
 
-    /* ===================== VERIFICAR CITA ===================== */
     public Respuesta tieneCita(Long idPaciente) {
         try {
             em = EntityManagerHelper.getInstance().getManager();
             
-            // Ajusta esto según tu entidad de Citas cuando exista
             Query query = em.createQuery(
                 "SELECT COUNT(c) FROM CitaEntity c WHERE c.paciente.idPaciente = :idPaciente"
             );
@@ -254,7 +243,6 @@ public class PacienteService {
             
         } catch (Exception e) {
             logger.log(Level.WARNING, "Error verificando citas (posiblemente la entidad Cita no existe aún)", e);
-            // Si la entidad Cita no existe aún, retornar false
             return new Respuesta(true, "", "", "TieneCita", false);
         } finally {
             if (em != null && em.isOpen()) {

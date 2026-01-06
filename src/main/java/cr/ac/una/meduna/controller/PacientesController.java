@@ -104,6 +104,7 @@ public class PacientesController extends Controller implements Initializable {
          UIAnimator.slideInLeft(root);
     } 
 
+    @FXML
     private void onActionBtnBuscarPaciente(ActionEvent event) {
         buscarPaciente();
     }
@@ -206,12 +207,6 @@ public class PacientesController extends Controller implements Initializable {
             if (node instanceof MFXTextField txt) {
                 if (txt.getText() == null || txt.getText().isBlank()) {
                     invalidos += validos ? txt.getFloatingText() : ", " + txt.getFloatingText();
-                    validos = false;
-                }
-
-            } else if (node instanceof MFXPasswordField pwd) {
-                if (pwd.getText() == null || pwd.getText().isBlank()) {
-                    invalidos += validos ? pwd.getFloatingText() : ", " + pwd.getFloatingText();
                     validos = false;
                 }
 
