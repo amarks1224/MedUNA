@@ -13,9 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Usuario
+ * Clase servicio para especialidades.
+ * @author Angie Marks S.
+ * @author Juan Calderón S.
  */
+
 public class EspecialidadService {
     
     private static final Logger logger = Logger.getLogger(EspecialidadService.class.getName());
@@ -68,30 +70,30 @@ public class EspecialidadService {
         }
     }
     
-    public Respuesta getEspecialidades(){
+    public Respuesta getEspecialidades() {
         try {
-            em = EntityManagerHelper.getInstance().getManager();
-            
-            Query query = em.createNamedQuery("Especialidad.findAll", EspecialidadEntity.class);
-            List<EspecialidadEntity> entities = query.getResultList();
-            
-            List<EspecialidadDTO> especialidadDto = new ArrayList<>();
-            for (EspecialidadEntity entity : entities) {
-                especialidadDto.add(new EspecialidadDTO(entity));
+            em = EntityManagerHelper.getInstance().getManager(); 
+
+            List<EspecialidadEntity> entidades =
+                    em.createNamedQuery("Especialidad.findAll", EspecialidadEntity.class)
+                      .getResultList();
+
+            List<EspecialidadDTO> lista = new ArrayList<>();
+
+            for (EspecialidadEntity e : entidades) {
+                lista.add(new EspecialidadDTO(e));
             }
-            
-            return new Respuesta(true, "", "", "Especialidad", especialidadDto);
-            
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "Error obteniendo lista de especialidades", e);
-            return new Respuesta(false, "Error consultando especialidades", e.getMessage());
+
+            return new Respuesta(true, "", "", "Especialidades", lista);
+
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "Error cargando especialidades", ex);
+            return new Respuesta(false, "Error cargando especialidades", ex.getMessage());
         } finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
+            if (em != null && em.isOpen()) em.close();
         }
     }
-    
+
     public Respuesta getEspecialidadByNombre(String nombre){
        try {
             em = EntityManagerHelper.getInstance().getManager();
@@ -209,64 +211,59 @@ public class EspecialidadService {
 
             if (entity == null) {
                 em.getTransaction().rollback();
-                notifyNoEliminada("Especialidad no encontrada");
                 return new Respuesta(false, "Especialidad no encontrada", "");
             }
 
-            Respuesta tieneMedicos = tieneMedico(idEspecialidad);
-            if ((Boolean) tieneMedicos.getResultado("TieneMedico")) {
+            Respuesta tieneMedicos = tieneMedicos(idEspecialidad);
+
+            if ((Boolean) tieneMedicos.getResultado("TieneMedicos")) {
                 em.getTransaction().rollback();
-                notifyNoEliminada("No se puede eliminar la especialidad: tiene médicos asociados");
-                return new Respuesta(false, "No se puede eliminar la especialidad: tiene médicos asociados", "");
+                return new Respuesta(
+                    false,
+                    "No se puede eliminar la especialidad: tiene médicos asociados",
+                    ""
+                );
             }
 
             em.remove(entity);
             em.getTransaction().commit();
-            notifyEliminada("Especialidad eliminada exitosamente");
+
             return new Respuesta(true, "Especialidad eliminada exitosamente", "");
 
         } catch (Exception e) {
-            if (em != null && em.getTransaction().isActive()) em.getTransaction().rollback();
-            notifyNoEliminada("Error eliminando especialidad");
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            Logger.getLogger(EspecialidadService.class.getName())
+                    .log(Level.SEVERE, "Error eliminando especialidad", e);
+
             return new Respuesta(false, "Error eliminando especialidad", e.getMessage());
+
         } finally {
-            if (em != null && em.isOpen()) em.close();
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
 
-    public Respuesta tieneMedico(Long idEspecialidad) {
+    public Respuesta tieneMedicos(Long idEspecialidad) {
         try {
-            Query query = em.createQuery(
-                "SELECT COUNT(m) FROM MedicoEntity m WHERE m.especialidad.idEspecialidad = :id"
-            );
-            query.setParameter("id", idEspecialidad);
+            Long count = em.createQuery(
+                "SELECT COUNT(m) FROM MedicoEntity m " +
+                "WHERE m.especialidadEntity.idEspecialidad = :id",
+                Long.class
+            )
+            .setParameter("id", idEspecialidad)
+            .getSingleResult();
 
-            Long count = (Long) query.getSingleResult();
-            return new Respuesta(true, "", "", "TieneMedico", count > 0);
+            boolean tiene = count != null && count > 0;
+
+            return new Respuesta(true, "", "", "TieneMedicos", tiene);
+
         } catch (Exception e) {
-            return new Respuesta(true, "", "", "TieneMedico", false);
+            logger.log(Level.SEVERE, "Error validando médicos asociados", e);
+            return new Respuesta(true, "", "", "TieneMedicos", false);
         }
     }
-
-    
-    // Método para registrar un listener
-    public void addListener(EspecialidadListener listener) {
-        listeners.add(listener);
-    }
-
-    // Método para notificar que NO se eliminó
-    private void notifyNoEliminada(String mensaje) {
-        for (EspecialidadListener listener : listeners) {
-            listener.onEspecialidadNoEliminada(mensaje);
-        }
-    }
-
-    // Método para notificar que se eliminó
-    private void notifyEliminada(String mensaje) {
-        for (EspecialidadListener listener : listeners) {
-            listener.onEspecialidadEliminada(mensaje);
-        }
-    }
-
-
+   
 }

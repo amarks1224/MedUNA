@@ -8,30 +8,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "PACIENTE")
 @NamedQueries({
-    @NamedQuery(
-            name = "Paciente.findAll",
-            query = "SELECT p FROM PacienteEntity p"
-    ),
-    @NamedQuery(
-            name = "Paciente.findById",
-            query = "SELECT p FROM PacienteEntity p WHERE p.idPaciente = :id"
-    ),
-    @NamedQuery(
-            name = "Paciente.findByCedula",
-            query = "SELECT p FROM PacienteEntity p WHERE p.cedula = :cedula"
-    )
-})
+    @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM PacienteEntity p"),
+    @NamedQuery(name = "Paciente.findById", query = "SELECT p FROM PacienteEntity p WHERE p.idPaciente = :id"),
+    @NamedQuery(name = "Paciente.findByCedula", query = "SELECT p FROM PacienteEntity p WHERE p.cedula = :cedula")})
+
 public class PacienteEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PACIENTE_SEQ")
-    @SequenceGenerator(
-            name = "PACIENTE_SEQ",
-            sequenceName = "PACIENTE_SEQ01",
-            allocationSize = 1
-    )
+    @SequenceGenerator(name = "PACIENTE_SEQ", sequenceName = "PACIENTE_SEQ01", allocationSize = 1)
     @Column(name = "ID_PACIENTE")
     private Long idPaciente;
 

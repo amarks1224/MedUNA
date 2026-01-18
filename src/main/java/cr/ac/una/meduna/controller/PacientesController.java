@@ -30,8 +30,6 @@ import cr.ac.una.meduna.util.FlowController;
 import cr.ac.una.meduna.util.Formato;
 import cr.ac.una.meduna.util.Respuesta;
 import cr.ac.una.meduna.util.Shake;
-import io.github.palexdev.materialfx.controls.MFXPasswordField;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,7 +77,6 @@ public class PacientesController extends Controller implements Initializable {
     @FXML
     private MFXRadioButton rdbFemenino;
     
-    
     private PacienteDTO pacienteDto;
     private ObjectProperty<PacienteDTO> pacienteProperty = new SimpleObjectProperty<>();
     private List<Node> requeridos = new ArrayList();
@@ -88,6 +85,8 @@ public class PacientesController extends Controller implements Initializable {
     private final ObservableList<String> tiposSangre = FXCollections.observableArrayList(
             "A+", "AB+", "B+", "O+", "A-", "AB-", "B-", "O-"
     );
+    @FXML
+    private MFXButton btnBuscarPaciente;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -136,7 +135,7 @@ public class PacientesController extends Controller implements Initializable {
         guardarPaciente();
     }
 
-     private void bindPaciente() {
+    private void bindPaciente() {
         try {
             pacienteProperty.addListener((obs, oldVal, newVal) -> {
                 if (oldVal != null) {
@@ -176,6 +175,7 @@ public class PacientesController extends Controller implements Initializable {
 
     private void cargarValoresDefecto() {
         pacienteDto = new PacienteDTO();
+        pacienteDto.setGenero("M");
         pacienteProperty.setValue(pacienteDto);
         txfId.clear();
         txfId.requestFocus();
@@ -196,7 +196,6 @@ public class PacientesController extends Controller implements Initializable {
             cmbTipoSangre
         ));
     }
-
 
     public String validarRequeridos() {
         boolean validos = true;
@@ -266,13 +265,8 @@ public class PacientesController extends Controller implements Initializable {
             valido = false;
         }
 
-        if (cmbTipoSangre.getSelectedItem() == null) {
+        if (cmbTipoSangre.getValue() == null) {
             shake.error(cmbTipoSangre);
-            valido = false;
-        }
-
-        if (tggGenero.getSelectedToggle() == null) {
-            shake.error(rdbMasculino, rdbFemenino);
             valido = false;
         }
 

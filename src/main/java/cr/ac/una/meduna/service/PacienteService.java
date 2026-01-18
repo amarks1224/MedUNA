@@ -11,6 +11,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase servicio para pacientes.
+ * @author Angie Marks S.
+ * @author Juan Calderón S.
+ */
+
 public class PacienteService {
 
     private static final Logger logger = Logger.getLogger(PacienteService.class.getName());

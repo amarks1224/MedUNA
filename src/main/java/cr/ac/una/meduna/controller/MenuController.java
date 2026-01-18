@@ -68,6 +68,7 @@ public class MenuController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnMedicos(ActionEvent event) {
+        openWindowAtCenter(btnMedicos, "MedicoView");
     }
 
     @FXML

@@ -9,22 +9,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "CITA")
 @NamedQueries({
-    @NamedQuery(
-            name = "Cita.findByMedico",
-            query = "SELECT c FROM CitaEntity c WHERE c.medico.idMedico = :idMedico"
-    )
-})
+    @NamedQuery(name = "Cita.findByMedico", query = "SELECT c FROM CitaEntity c WHERE c.medico.idMedico = :idMedico")})
+
 public class CitaEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CITA_SEQ")
-    @SequenceGenerator(
-            name = "CITA_SEQ",
-            sequenceName = "CITA_SEQ01",
-            allocationSize = 1
-    )
+    @SequenceGenerator(name = "CITA_SEQ", sequenceName = "CITA_SEQ01", allocationSize = 1)
+    
     @Column(name = "ID_CITA")
     private Long idCita;
 
@@ -126,7 +120,6 @@ public class CitaEntity implements Serializable {
     public void setCancelacion(String cancelacion) {
         this.cancelacion = cancelacion;
     }
-
 
     public Long getIdCita() {
         return idCita;

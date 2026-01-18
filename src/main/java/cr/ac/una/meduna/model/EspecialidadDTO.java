@@ -1,6 +1,7 @@
 package cr.ac.una.meduna.model;
 
 import jakarta.json.bind.annotation.JsonbTransient;
+import java.util.Objects;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -81,6 +82,21 @@ public class EspecialidadDTO {
     public void setDuracion(Integer duracion) {
         this.duracion.set(duracion);
     }
+ 
+    public EspecialidadEntity getEntidad() {
+        EspecialidadEntity entity = new EspecialidadEntity();
+
+        if (getIdEspecialidad() != null) {
+            entity.setIdEspecialidad(getIdEspecialidad());
+        }
+
+        entity.setCodigo(getCodigo());
+        entity.setNombre(getNombre());
+        entity.setDescripcion(getDescripcion());
+        entity.setDuracion(getDuracion() != null ? getDuracion() : 0);
+
+        return entity;
+    }
 
     @JsonbTransient
     public StringProperty idEspecialidadProperty() {
@@ -120,17 +136,20 @@ public class EspecialidadDTO {
                 '}';
     }
 
-    @Override
-    public int hashCode() {
-        return idEspecialidad.get() != null ? idEspecialidad.get().hashCode() : 0;
-    }
-
+   
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof EspecialidadDTO)) return false;
         EspecialidadDTO other = (EspecialidadDTO) obj;
-        if (idEspecialidad.get() == null || other.idEspecialidad.get() == null) return false;
-        return idEspecialidad.get().equals(other.idEspecialidad.get());
+        return Objects.equals(this.getIdEspecialidad(), other.getIdEspecialidad());
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdEspecialidad());
+    }
+    
+    
+
 }

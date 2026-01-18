@@ -1,9 +1,6 @@
 package cr.ac.una.meduna.controller;
 
-import cr.ac.una.meduna.App;
 import cr.ac.una.meduna.util.FlowController;
-import cr.ac.una.meduna.util.UIAnimator;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;

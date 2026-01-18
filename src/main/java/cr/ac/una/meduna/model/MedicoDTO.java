@@ -1,6 +1,9 @@
 package cr.ac.una.meduna.model;
 
 import jakarta.json.bind.annotation.JsonbTransient;
+import java.util.Objects;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -13,7 +16,7 @@ public class MedicoDTO {
     private StringProperty telefono;
     private StringProperty correo;
     private StringProperty estado;
-    private EspecialidadEntity especialidad;
+    private ObjectProperty<EspecialidadDTO> especialidad;
 
     public MedicoDTO() {
         this.idMedico = new SimpleStringProperty("");
@@ -23,24 +26,32 @@ public class MedicoDTO {
         this.telefono = new SimpleStringProperty("");
         this.correo = new SimpleStringProperty("");
         this.estado = new SimpleStringProperty("A");
+        this.especialidad = new SimpleObjectProperty<>();
     }
 
     public MedicoDTO(MedicoEntity entity) {
         this();
+
         if (entity.getIdMedico() != null) {
             this.idMedico.set(entity.getIdMedico().toString());
         }
+
         this.nombre.set(entity.getNombre());
         this.apellido.set(entity.getApellido());
         this.numColegiado.set(entity.getNumColegiado().toString());
         this.telefono.set(entity.getTelefono());
         this.correo.set(entity.getCorreo());
         this.estado.set(entity.getEstado());
-        this.especialidad = entity.getEspecialidad();
+
+        if (entity.getEspecialidadEntity() != null) {
+            this.especialidad.set(new EspecialidadDTO(entity.getEspecialidadEntity()));
+        }
     }
 
     public Long getIdMedico() {
-        return idMedico.get() == null || idMedico.get().isBlank() ? null : Long.valueOf(idMedico.get());
+        return idMedico.get() == null || idMedico.get().isBlank()
+                ? null
+                : Long.valueOf(idMedico.get());
     }
 
     public String getNombre() {
@@ -52,7 +63,9 @@ public class MedicoDTO {
     }
 
     public Long getNumColegiado() {
-        return Long.valueOf(numColegiado.get());
+        return numColegiado.get() == null || numColegiado.get().isBlank()
+                ? null
+                : Long.valueOf(numColegiado.get());
     }
 
     public String getTelefono() {
@@ -67,12 +80,40 @@ public class MedicoDTO {
         return estado.get();
     }
 
-    public EspecialidadEntity getEspecialidad() {
-        return especialidad;
+    public EspecialidadDTO getEspecialidad() {
+        return especialidad.get();
     }
 
-    public void setEspecialidad(EspecialidadEntity especialidad) {
-        this.especialidad = especialidad;
+    public void setIdMedico(Long id) {
+        idMedico.set(id != null ? id.toString() : "");
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre.set(nombre);
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido.set(apellido);
+    }
+
+    public void setNumColegiado(Long num) {
+        this.numColegiado.set(num != null ? num.toString() : "");
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono.set(telefono);
+    }
+
+    public void setCorreo(String correo) {
+        this.correo.set(correo);
+    }
+
+    public void setEstado(String estado) {
+        this.estado.set(estado);
+    }
+
+    public void setEspecialidad(EspecialidadDTO especialidad) {
+        this.especialidad.set(especialidad);
     }
 
     @JsonbTransient
@@ -110,4 +151,22 @@ public class MedicoDTO {
         return estado;
     }
 
+    @JsonbTransient
+    public ObjectProperty<EspecialidadDTO> especialidadProperty() {
+        return especialidad;
+    }
+    
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(idMedico.get());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof MedicoDTO)) return false;
+        MedicoDTO other = (MedicoDTO) obj;
+        return Objects.equals(this.idMedico.get(), other.idMedico.get());
+    }
 }

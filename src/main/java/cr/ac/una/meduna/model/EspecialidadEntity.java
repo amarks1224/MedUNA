@@ -7,26 +7,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "ESPECIALIDAD")
 @NamedQueries({
-    @NamedQuery(
-            name = "Especialidad.findAll",
-            query = "SELECT e FROM EspecialidadEntity e"
-    ),
-    @NamedQuery(
-            name = "Especialidad.findByCodigo",
-            query = "SELECT e FROM EspecialidadEntity e WHERE e.codigo = :codigo"
-    )
-})
+    @NamedQuery(name = "Especialidad.findAll", query = "SELECT e FROM EspecialidadEntity e"),
+    @NamedQuery(name = "Especialidad.findByCodigo", query = "SELECT e FROM EspecialidadEntity e WHERE e.codigo = :codigo")})
+
 public class EspecialidadEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ESPECIALIDAD_SEQ")
-    @SequenceGenerator(
-            name = "ESPECIALIDAD_SEQ",
-            sequenceName = "ESPECIALIDAD_SEQ01",
-            allocationSize = 1
-    )
+    @SequenceGenerator(name = "ESPECIALIDAD_SEQ", sequenceName = "ESPECIALIDAD_SEQ01", allocationSize = 1)
+    
     @Column(name = "ID_ESPECIALIDAD")
     private Long idEspecialidad;
 
@@ -95,7 +86,7 @@ public class EspecialidadEntity implements Serializable {
     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
-
+    
     @Override
     public int hashCode() {
         return Objects.hashCode(idEspecialidad);

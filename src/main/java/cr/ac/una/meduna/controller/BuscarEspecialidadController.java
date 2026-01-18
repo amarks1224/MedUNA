@@ -29,7 +29,7 @@ import javafx.scene.control.Alert;
 
 
 /**
- * Clase Controler de la ventana de buscar especialidades.
+ * Clase controlador de la ventana de buscar especialidades.
  * @author Angie Marks S.
  * @author Juan Calderón S.
  */
@@ -175,5 +175,4 @@ public class BuscarEspecialidadController extends Controller implements Initiali
         return resultado;
     }
 
-   
 }

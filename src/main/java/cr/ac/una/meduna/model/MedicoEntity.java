@@ -7,30 +7,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "MEDICO")
 @NamedQueries({
-    @NamedQuery(
-            name = "Medico.findAll",
-            query = "SELECT m FROM MedicoEntity m"
-    ),
-    @NamedQuery(
-            name = "Medico.findByCodigo",
-            query = "SELECT m FROM MedicoEntity m WHERE m.idMedico = :id"
-    ),
-    @NamedQuery(
-            name = "Medico.findByNombre",
-            query = "SELECT m FROM MedicoEntity m WHERE LOWER(m.nombre) LIKE :nombre"
-    )
-})
+    @NamedQuery(name = "Medico.findAll", query = "SELECT m FROM MedicoEntity m"),
+    @NamedQuery(name = "Medico.findByCodigo", query = "SELECT m FROM MedicoEntity m WHERE m.idMedico = :id"),
+    @NamedQuery(name = "Medico.findByNombre", query = "SELECT m FROM MedicoEntity m WHERE LOWER(m.nombre) LIKE :nombre")})
+
 public class MedicoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEDICO_SEQ")
-    @SequenceGenerator(
-            name = "MEDICO_SEQ",
-            sequenceName = "MEDICO_SEQ01",
-            allocationSize = 1
-    )
+    @SequenceGenerator(name = "MEDICO_SEQ", sequenceName = "MEDICO_SEQ01", allocationSize = 1)
+    
     @Column(name = "ID_MEDICO")
     private Long idMedico;
 
@@ -52,9 +40,12 @@ public class MedicoEntity implements Serializable {
     @Column(name = "ESTADO_MED", nullable = false)
     private String estado;
 
+    @Column(name = "ESPECIALIDAD", nullable = false, length = 30)
+    private String especialidad;
+
     @ManyToOne
     @JoinColumn(name = "ID_ESPECIALIDAD")
-    private EspecialidadEntity especialidad;
+    private EspecialidadEntity especialidadEntity;
 
     public MedicoEntity() {
     }
@@ -70,7 +61,7 @@ public class MedicoEntity implements Serializable {
         this.telefono = dto.getTelefono();
         this.correo = dto.getCorreo();
         this.estado = dto.getEstado();
-        this.especialidad = dto.getEspecialidad();
+        this.especialidad = dto.getEspecialidad() != null ? dto.getEspecialidad().getNombre() : "";
     }
 
     public Long getIdMedico() {
@@ -129,12 +120,21 @@ public class MedicoEntity implements Serializable {
         this.estado = estado;
     }
 
-    public EspecialidadEntity getEspecialidad() {
+    public String getEspecialidad() {
         return especialidad;
     }
 
-    public void setEspecialidad(EspecialidadEntity especialidad) {
+    public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
+    }
+
+    public EspecialidadEntity getEspecialidadEntity() {
+        return especialidadEntity;
+    }
+
+    public void setEspecialidadEntity(EspecialidadEntity especialidadEntity) {
+        this.especialidadEntity = especialidadEntity;
+        this.especialidad = especialidadEntity != null ? especialidadEntity.getNombre() : "";
     }
 
     @Override
@@ -160,7 +160,8 @@ public class MedicoEntity implements Serializable {
                 ", telefono='" + telefono + '\'' +
                 ", correo='" + correo + '\'' +
                 ", estado='" + estado + '\'' +
-                ", especialidad=" + (especialidad != null ? especialidad.getNombre() : null) +
+                ", especialidad='" + especialidad + '\'' +
+                ", especialidadEntity=" + (especialidadEntity != null ? especialidadEntity.getNombre() : null) +
                 '}';
     }
 }
