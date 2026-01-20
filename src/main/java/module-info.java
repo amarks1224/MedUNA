@@ -13,7 +13,7 @@ module cr.ac.una.meduna {
     requires jakarta.json;
     requires jakarta.annotation;
     requires jakarta.ws.rs;
-     requires jakarta.inject;
+    requires jakarta.inject;
 
     requires java.sql;
     requires java.naming;
@@ -28,4 +28,6 @@ module cr.ac.una.meduna {
     exports cr.ac.una.meduna.model;
     exports cr.ac.una.meduna.service;
     exports cr.ac.una.meduna.util;
+    
+    requires java.net.http;
 }

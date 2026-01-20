@@ -51,6 +51,7 @@ public class MenuController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCitas(ActionEvent event) {
+        openWindowAtCenter(btnCitas, "CitaView");
     }
 
     @FXML

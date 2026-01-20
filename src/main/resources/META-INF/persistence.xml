@@ -13,9 +13,12 @@
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/XEPDB1"/>
-            <property name="jakarta.persistence.jdbc.user" value="meduna"/>
-            <property name="jakarta.persistence.jdbc.password" value="meduna"/>
+            <!--<property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/XEPDB1"/>-->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1522/XEPDB1"/>
+<!--            <property name="jakarta.persistence.jdbc.user" value="meduna"/>
+            <property name="jakarta.persistence.jdbc.password" value="meduna"/>-->
+            <property name="jakarta.persistence.jdbc.user" value="una"/>
+            <property name="jakarta.persistence.jdbc.password" value="una"/>
 
             <property name="eclipselink.logging.level" value="FINE"/>
             <property name="eclipselink.ddl-generation" value="create-tables"/>
