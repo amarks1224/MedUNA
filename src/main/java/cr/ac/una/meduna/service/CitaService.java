@@ -268,6 +268,46 @@ public class CitaService {
         }
     }
 
+    public Respuesta cambiarEstadoCita(Long idCita, String nuevoEstado, String motivoCancelacion) {
+        try {
+            em = EntityManagerHelper.getInstance().getManager();
+            em.getTransaction().begin();
+
+            CitaEntity entity = em.find(CitaEntity.class, idCita);
+
+            if (entity == null) {
+                em.getTransaction().rollback();
+                return new Respuesta(false, "Cita no encontrada", "");
+            }
+
+            entity.setEstado(nuevoEstado);
+
+            if ("C".equals(nuevoEstado)) {
+                entity.setCancelacion(motivoCancelacion);
+            } else {
+                entity.setCancelacion(null);
+            }
+
+            entity = em.merge(entity);
+            em.getTransaction().commit();
+
+            return new Respuesta(true, "Estado actualizado con éxito", "", "Cita", new CitaDTO(entity));
+
+        } catch (Exception e) {
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            logger.log(Level.SEVERE, "Error cambiando estado de cita", e);
+            return new Respuesta(false, "Error cambiando estado de cita", e.getMessage());
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
+    
+    
     private Respuesta validarDatosBasicos(CitaDTO dto) {
         if (dto == null) {
             return new Respuesta(false, "Datos de cita vacíos", "");

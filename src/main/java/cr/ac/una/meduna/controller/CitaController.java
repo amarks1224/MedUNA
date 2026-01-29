@@ -11,6 +11,7 @@ import cr.ac.una.meduna.service.CitaService;
 import cr.ac.una.meduna.service.HolidayService;
 import cr.ac.una.meduna.service.MedicoService;
 import cr.ac.una.meduna.service.PacienteService;
+import cr.ac.una.meduna.util.Mensaje;
 import cr.ac.una.meduna.util.Respuesta;
 import java.net.URL;
 import java.time.LocalDate;
@@ -28,7 +29,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -40,6 +44,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 /**
@@ -99,7 +105,7 @@ public class CitaController extends Controller implements Initializable {
     private List<CitaDTO> citasOcupadas = new ArrayList<>();
 
     private final LocalTime HORA_APERTURA = LocalTime.of(7, 0);
-    private final LocalTime HORA_CIERRE = LocalTime.of(18, 0); // cierre real (fin máximo)
+    private final LocalTime HORA_CIERRE = LocalTime.of(18, 0); 
     private final int BLOQUE_MINUTOS = 30;
 
     private final HolidayService holidayService = new HolidayService();
@@ -124,6 +130,36 @@ public class CitaController extends Controller implements Initializable {
         };
     }
 
+    @FXML
+    private void onActionBtnCalendario() {
+        MedicoDTO medico = cbMedico.getValue();
+        if (medico == null || medico.getIdMedico() == null) {
+            new Mensaje().showModal(Alert.AlertType.WARNING, "Calendario", null, "Seleccione un médico.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/cr/ac/una/meduna/view/CitaCalendario.fxml"));
+            Parent root = loader.load();
+
+            CitaCalendarioController ctrl = loader.getController();
+
+            ctrl.inicializarConMedico(medico, this.feriadosPorAnio); 
+
+            Stage stage = new Stage();
+            stage.setTitle("Agenda del médico");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            cargarCitas();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Calendario", null, "Error abriendo calendario: " + ex.getMessage());
+        }
+    }
+
     /**
      * Initializes the controller class.
      */
@@ -136,7 +172,6 @@ public class CitaController extends Controller implements Initializable {
         cbMedico.valueProperty().addListener((obs, old, neu) -> actualizarDisponibilidad());
         dpFecha.valueProperty().addListener((obs, old, neu) -> actualizarDisponibilidad());
 
-        // cuando el usuario elige hora inicio, recalculamos posibles horas fin
         cbHoraInicio.valueProperty().addListener((obs, old, neu) -> actualizarHorasFinDisponibles());
 
         tbCitas.setItems(citas);
@@ -162,7 +197,6 @@ public class CitaController extends Controller implements Initializable {
 
         limpiarFormulario();
 
-        // ✅ refrescar combos cuando la ventana vuelve a enfocarse
         Platform.runLater(() -> {
             Window w = root.getScene() != null ? root.getScene().getWindow() : null;
             if (w != null) {
@@ -176,9 +210,6 @@ public class CitaController extends Controller implements Initializable {
         });
     }
 
-    // ---------------------------
-    // Configuración UI
-    // ---------------------------
     private void configurarTabla() {
         colId.setCellValueFactory(new PropertyValueFactory<>("idCita"));
         colMedico.setCellValueFactory(cell -> {
@@ -202,7 +233,6 @@ public class CitaController extends Controller implements Initializable {
 
     private void configurarCombos() {
 
-        // ===== ESTADO =====
         cbEstado.setItems(FXCollections.observableArrayList("P", "A", "F", "S", "C"));
         cbEstado.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -220,13 +250,11 @@ public class CitaController extends Controller implements Initializable {
         });
         cbEstado.getSelectionModel().select("P");
 
-        // Horas base (se actualizan con filtros)
         cbHoraInicio.setItems(FXCollections.observableArrayList(
                 generarHoras(HORA_APERTURA, HORA_CIERRE.minusMinutes(BLOQUE_MINUTOS), BLOQUE_MINUTOS)
         ));
         cbHoraFin.getItems().clear();
 
-        // ✅ LISTENER: cada vez que cambie la hora inicio -> hora fin = inicio + 1 hora
         cbHoraInicio.valueProperty().addListener((obs, old, neu) -> {
             if (neu != null) {
                 cbHoraFin.setItems(FXCollections.observableArrayList(neu.plusHours(1)));
@@ -236,7 +264,6 @@ public class CitaController extends Controller implements Initializable {
             }
         });
 
-        // ===== MÉDICO =====
         cbMedico.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(MedicoDTO item, boolean empty) {
@@ -255,7 +282,6 @@ public class CitaController extends Controller implements Initializable {
             }
         });
 
-        // ===== PACIENTE =====
         cbPaciente.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(PacienteDTO item, boolean empty) {
@@ -284,14 +310,11 @@ public class CitaController extends Controller implements Initializable {
         LocalDate fecha = dpFecha.getValue();
 
         if (medico == null || medico.getIdMedico() == null || fecha == null) {
-            // si no hay médico o fecha todavía, no mostramos horas
             return;
         }
 
-        // 1) Generar todas las horas posibles de inicio
         List<LocalTime> todas = generarHoras(LocalTime.of(7, 0), LocalTime.of(17, 0), 30);
 
-        // 2) Consultar citas ocupadas del médico en esa fecha
         Respuesta r = citaService.getCitasByMedicoFecha(medico.getIdMedico(), fecha);
         if (!r.getEstado()) {
             mostrarError("Citas", r.getMensaje(), r.getMensajeInterno());
@@ -304,7 +327,6 @@ public class CitaController extends Controller implements Initializable {
             ocupadas = List.of();
         }
 
-        // 3) Construir un set de inicios ocupados
         Set<LocalTime> horasOcupadas = new HashSet<>();
         for (CitaDTO c : ocupadas) {
             if (c.getHoraInicio() != null) {
@@ -312,12 +334,10 @@ public class CitaController extends Controller implements Initializable {
             }
         }
 
-        // 4) Filtrar solo disponibles:
-        //    Disponible si el inicio NO está ocupado y además el fin (inicio+1h) no se pasa del rango.
         List<LocalTime> disponibles = new ArrayList<>();
         for (LocalTime inicio : todas) {
-            LocalTime fin = inicio.plusHours(1); // duración 1 hora
-            boolean finDentro = !fin.isAfter(LocalTime.of(18, 0)); // ejemplo: última cita inicia 17:00 y termina 18:00
+            LocalTime fin = inicio.plusHours(1); 
+            boolean finDentro = !fin.isAfter(LocalTime.of(18, 0)); 
             if (!horasOcupadas.contains(inicio) && finDentro) {
                 disponibles.add(inicio);
             }
@@ -325,7 +345,6 @@ public class CitaController extends Controller implements Initializable {
 
         cbHoraInicio.setItems(FXCollections.observableArrayList(disponibles));
 
-        // opcional: seleccionar primera disponible
         if (!disponibles.isEmpty()) {
             cbHoraInicio.getSelectionModel().selectFirst();
             cbHoraFin.setItems(FXCollections.observableArrayList(cbHoraInicio.getValue().plusHours(1)));
@@ -343,7 +362,6 @@ public class CitaController extends Controller implements Initializable {
         LocalDate fecha = dpFecha.getValue();
 
         if (medico == null || medico.getIdMedico() == null || fecha == null) {
-            // sin médico o sin fecha, no filtramos (o podrías dejar vacío)
             cbHoraInicio.setItems(FXCollections.observableArrayList(
                     generarHoras(HORA_APERTURA, HORA_CIERRE.minusMinutes(BLOQUE_MINUTOS), BLOQUE_MINUTOS)
             ));
@@ -362,14 +380,12 @@ public class CitaController extends Controller implements Initializable {
             citasOcupadas = ocupadas;
         }
 
-        // Generar todas las posibles horas inicio
         List<LocalTime> todasInicio = generarHoras(
                 HORA_APERTURA,
                 HORA_CIERRE.minusMinutes(BLOQUE_MINUTOS),
                 BLOQUE_MINUTOS
         );
 
-        // Filtrar: un inicio es válido si existe al menos UN fin posible sin chocar
         List<LocalTime> inicioDisponibles = new ArrayList<>();
         for (LocalTime ini : todasInicio) {
             if (existeAlgunFinValidoParaInicio(ini)) {
@@ -394,7 +410,6 @@ public class CitaController extends Controller implements Initializable {
             return;
         }
 
-        // posibles fin: desde ini+30 hasta cierre, en bloques de 30
         List<LocalTime> posiblesFin = generarHoras(
                 ini.plusMinutes(BLOQUE_MINUTOS),
                 HORA_CIERRE,
@@ -405,9 +420,7 @@ public class CitaController extends Controller implements Initializable {
         for (LocalTime fin : posiblesFin) {
             if (!hayConflicto(ini, fin)) {
                 finValidos.add(fin);
-            } else {
-                // si ya choca en este fin, normalmente cualquier fin mayor también chocará
-                // (porque se alarga el rango), así que podemos cortar para optimizar:
+            } else {             
                 break;
             }
         }
@@ -442,7 +455,6 @@ public class CitaController extends Controller implements Initializable {
             LocalTime iniExist = c.getHoraInicio();
             LocalTime finExist = c.getHoraFin();
 
-            // choque si: ini < finExist AND fin > iniExist
             if (ini.isBefore(finExist) && fin.isAfter(iniExist)) {
                 return true;
             }
@@ -483,12 +495,12 @@ public class CitaController extends Controller implements Initializable {
                 }
             }
             feriadosPorAnio.put(year, map);
-            aplicarDayCellFactory(); // refresca
+            aplicarDayCellFactory(); 
         });
 
         task.setOnFailed(e -> {
             System.err.println("Error feriados: " + task.getException());
-            feriadosPorAnio.put(year, java.util.Map.of()); // cache vacío para no spamear
+            feriadosPorAnio.put(year, java.util.Map.of()); 
             aplicarDayCellFactory();
         });
 
@@ -513,7 +525,7 @@ public class CitaController extends Controller implements Initializable {
 
                 var feriado = getFeriado(date);
                 if (feriado != null) {
-                    setDisable(true); // ✅ evita agendar en feriado
+                    setDisable(true); 
                     setStyle("-fx-background-color: #ffdddd; -fx-text-fill: #b00020; -fx-font-weight: bold;");
                     setTooltip(new javafx.scene.control.Tooltip(feriado.getLocalName()));
                 } else {

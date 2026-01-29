@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,88 +15,71 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ScrollPane?>
 
-<AnchorPane id="AnchorPane"
-            fx:id="root"
-            prefHeight="500.0"
-            prefWidth="900.0"
-            stylesheets="@styles.css"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="cr.ac.una.meduna.controller.CitaController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="500.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.meduna.controller.CitaController">
 
     <children>
-        <HBox spacing="8.0"
-              styleClass="white-container"
-              AnchorPane.topAnchor="0.0"
-              AnchorPane.bottomAnchor="0.0"
-              AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0">
+        <HBox spacing="8.0" styleClass="white-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
             <children>
                 <!-- PANEL IZQUIERDO (FORM) -->
                 <ScrollPane fitToWidth="true" prefWidth="280.0" HBox.hgrow="NEVER">
                     <content>
-                        <VBox spacing="10.0" minWidth="260.0">
+                        <VBox minWidth="260.0" spacing="10.0">
                             <children>
 
                                 <Label text="Citas">
                                     <styleClass>
-                                        <String fx:value="text-title"/>
-                                        <String fx:value="text-bold"/>
+                                        <String fx:value="text-title" />
+                                        <String fx:value="text-bold" />
                                     </styleClass>
                                 </Label>
+                        <Button mnemonicParsing="false" onAction="#onActionBtnCalendario" text="Calendario" />
 
-                                <Separator/>
+                                <Separator />
 
-                                <Label text="ID Cita" styleClass="text-subtitle"/>
-                                <TextField fx:id="txtIdCita" editable="false" promptText="(automático)"/>
+                                <Label styleClass="text-subtitle" text="ID Cita" />
+                                <TextField fx:id="txtIdCita" editable="false" promptText="(automático)" />
 
-                                <Label text="Médico" styleClass="text-subtitle"/>
-                                <ComboBox fx:id="cbMedico" maxWidth="1.7976931348623157E308"/>
+                                <Label styleClass="text-subtitle" text="Médico" />
+                                <ComboBox fx:id="cbMedico" maxWidth="1.7976931348623157E308" />
 
-                                <Label text="Paciente" styleClass="text-subtitle"/>
-                                <ComboBox fx:id="cbPaciente" maxWidth="1.7976931348623157E308"/>
+                                <Label styleClass="text-subtitle" text="Paciente" />
+                                <ComboBox fx:id="cbPaciente" maxWidth="1.7976931348623157E308" />
 
-                                <Label text="Fecha" styleClass="text-subtitle"/>
-                                <DatePicker fx:id="dpFecha" maxWidth="1.7976931348623157E308"/>
+                                <Label styleClass="text-subtitle" text="Fecha" />
+                                <DatePicker fx:id="dpFecha" maxWidth="1.7976931348623157E308" />
 
-                                <Label text="Hora inicio" styleClass="text-subtitle"/>
-                                <ComboBox fx:id="cbHoraInicio" maxWidth="1.7976931348623157E308"/>
+                                <Label styleClass="text-subtitle" text="Hora inicio" />
+                                <ComboBox fx:id="cbHoraInicio" maxWidth="1.7976931348623157E308" />
 
-                                <Label text="Hora fin" styleClass="text-subtitle"/>
-                                <ComboBox fx:id="cbHoraFin" maxWidth="1.7976931348623157E308"/>
+                                <Label styleClass="text-subtitle" text="Hora fin" />
+                                <ComboBox fx:id="cbHoraFin" maxWidth="1.7976931348623157E308" />
 
-                                <Label text="Motivo" styleClass="text-subtitle"/>
-                                <TextField fx:id="txtMotivo" promptText="Motivo de la cita"/>
+                                <Label styleClass="text-subtitle" text="Motivo" />
+                                <TextField fx:id="txtMotivo" promptText="Motivo de la cita" />
 
-                                <Label text="Estado" styleClass="text-subtitle"/>
-                                <ComboBox fx:id="cbEstado" maxWidth="1.7976931348623157E308"/>
+                                <Label styleClass="text-subtitle" text="Estado" />
+                                <ComboBox fx:id="cbEstado" maxWidth="1.7976931348623157E308" />
 
-                                <Separator/>
+                                <Separator />
 
-                                <Label text="Cancelación" styleClass="text-subtitle"/>
-                                <TextArea fx:id="txtCancelacion" prefRowCount="3" wrapText="true"
-                                          promptText="Motivo de cancelación (opcional)"/>
+                                <Label styleClass="text-subtitle" text="Cancelación" />
+                                <TextArea fx:id="txtCancelacion" prefRowCount="3" promptText="Motivo de cancelación (opcional)" wrapText="true" />
 
                                 <HBox spacing="8.0">
                                     <children>
-                                        <Button text="Nuevo" onAction="#onNuevo" maxWidth="1.7976931348623157E308"
-                                                styleClass="mfx-button-primary" HBox.hgrow="ALWAYS"/>
-                                        <Button text="Guardar" onAction="#onGuardar" maxWidth="1.7976931348623157E308"
-                                                styleClass="mfx-button-primary" HBox.hgrow="ALWAYS"/>
+                                        <Button maxWidth="1.7976931348623157E308" onAction="#onNuevo" styleClass="mfx-button-primary" text="Nuevo" HBox.hgrow="ALWAYS" />
+                                        <Button maxWidth="1.7976931348623157E308" onAction="#onGuardar" styleClass="mfx-button-primary" text="Guardar" HBox.hgrow="ALWAYS" />
                                     </children>
                                 </HBox>
 
-                                <Button text="Cancelar cita" onAction="#onCancelarCita"
-                                        maxWidth="1.7976931348623157E308"
-                                        styleClass="mfx-button-primary"/>
+                                <Button maxWidth="1.7976931348623157E308" onAction="#onCancelarCita" styleClass="mfx-button-primary" text="Cancelar cita" />
 
                             </children>
 
                             <padding>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
 
                         </VBox>
@@ -106,40 +90,40 @@
                 <!-- PANEL DERECHO (TABLA) -->
                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                     <styleClass>
-                        <String fx:value="white-container"/>
-                        <String fx:value="container"/>
+                        <String fx:value="white-container" />
+                        <String fx:value="container" />
                     </styleClass>
 
                     <children>
                         <Label text="Listado de Citas">
                             <styleClass>
-                                <String fx:value="text-title"/>
-                                <String fx:value="text-bold"/>
+                                <String fx:value="text-title" />
+                                <String fx:value="text-bold" />
                             </styleClass>
                         </Label>
 
                         <TableView fx:id="tbCitas" VBox.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn fx:id="colId" text="ID" prefWidth="70.0"/>
-                                <TableColumn fx:id="colMedico" text="Médico (ID)" prefWidth="120.0"/>
-                                <TableColumn fx:id="colPaciente" text="Paciente (ID)" prefWidth="130.0"/>
-                                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="120.0"/>
-                                <TableColumn fx:id="colHoraIni" text="Inicio" prefWidth="90.0"/>
-                                <TableColumn fx:id="colHoraFin" text="Fin" prefWidth="90.0"/>
-                                <TableColumn fx:id="colEstado" text="Estado" prefWidth="80.0"/>
+                                <TableColumn fx:id="colId" prefWidth="70.0" text="ID" />
+                                <TableColumn fx:id="colMedico" prefWidth="120.0" text="Médico (ID)" />
+                                <TableColumn fx:id="colPaciente" prefWidth="130.0" text="Paciente (ID)" />
+                                <TableColumn fx:id="colFecha" prefWidth="120.0" text="Fecha" />
+                                <TableColumn fx:id="colHoraIni" prefWidth="90.0" text="Inicio" />
+                                <TableColumn fx:id="colHoraFin" prefWidth="90.0" text="Fin" />
+                                <TableColumn fx:id="colEstado" prefWidth="80.0" text="Estado" />
                             </columns>
                         </TableView>
                     </children>
 
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                 </VBox>
 
             </children>
 
             <padding>
-                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
             </padding>
         </HBox>
     </children>
