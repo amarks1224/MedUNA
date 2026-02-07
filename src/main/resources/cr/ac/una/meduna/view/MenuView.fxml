@@ -53,32 +53,32 @@
                </children>
             </VBox>
             <Separator prefWidth="200.0" />
-            <MFXButton fx:id="btnCitas" maxWidth="1.7976931348623157E308" onAction="#onActionBtnCitas" onTouchPressed="#onTouchPressedBtnSalones" prefHeight="41.0" prefWidth="278.0" styleClass="mfx-button-primary" text="Citas">
+            <MFXButton fx:id="btnCitas" maxWidth="1.7976931348623157E308" onAction="#onActionBtnCitas" prefHeight="41.0" prefWidth="278.0" styleClass="mfx-button-primary" text="Citas">
                <padding>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </MFXButton>
-            <MFXButton fx:id="btnPacientes" maxWidth="1.7976931348623157E308" onAction="#onActionBtnPacientes" onTouchPressed="#onTouchPressedBtnPedidos" styleClass="mfx-button-primary" text="Pacientes">
+            <MFXButton fx:id="btnPacientes" maxWidth="1.7976931348623157E308" onAction="#onActionBtnPacientes" styleClass="mfx-button-primary" text="Pacientes">
                <padding>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </MFXButton>
-            <MFXButton fx:id="btnMedicos" maxWidth="1.7976931348623157E308" onAction="#onActionBtnMedicos" onTouchPressed="#onTouchPressedBtnCajas" styleClass="mfx-button-primary" text="Medicos">
+            <MFXButton fx:id="btnMedicos" maxWidth="1.7976931348623157E308" onAction="#onActionBtnMedicos" styleClass="mfx-button-primary" text="Medicos">
                <padding>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </MFXButton>
-            <MFXButton fx:id="btnEspecialidades" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEspecialidades" onTouchPressed="#onTouchPressedBtnFacturacion" styleClass="mfx-button-primary" text="Especialidades">
+            <MFXButton fx:id="btnEspecialidades" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEspecialidades" styleClass="mfx-button-primary" text="Especialidades">
                <padding>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </MFXButton>
-            <MFXButton fx:id="btnEstadisticas" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEstadisticas" onTouchPressed="#onTouchPressedBtnReportes" styleClass="mfx-button-primary" text="Estadisticas">
+            <MFXButton fx:id="btnEstadisticas" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEstadisticas" styleClass="mfx-button-primary" text="Estadisticas">
                <padding>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>
             </MFXButton>
-            <MFXButton fx:id="btnSalir" maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" onTouchPressed="#onTouchPressedBtnCerrarSesion" styleClass="mfx-button-outlined" text="Salir">
+            <MFXButton fx:id="btnSalir" maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" styleClass="mfx-button-outlined" text="Salir">
                <padding>
                   <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                </padding>

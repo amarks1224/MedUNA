@@ -1,19 +1,20 @@
 package cr.ac.una.meduna.controller;
 
 import cr.ac.una.meduna.util.FlowController;
-import cr.ac.una.meduna.util.UIAnimator;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.TouchEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
- * FXML Controller class
+ * Controlador menú servicios
  *
- * @author Usuario
+ * @author Angie Marks
+ * @author Juan Calderón
  */
 public class MenuController extends Controller implements Initializable {
 
@@ -33,10 +34,15 @@ public class MenuController extends Controller implements Initializable {
     private ResourceBundle bundle;
     private String ventanaActual;
     private MFXButton botonMenuActual;
-
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Button btnMenu;
+    @FXML
+    private Label lblTitulo;
+    @FXML
+    private Label lblTitulo1;
+    @FXML
+    private Label lblTitulo11;
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         bundle = rb;
@@ -55,52 +61,40 @@ public class MenuController extends Controller implements Initializable {
     }
 
     @FXML
-    private void onTouchPressedBtnSalones(TouchEvent event) {
-    }
-
-    @FXML
     private void onActionBtnPacientes(ActionEvent event) {
         openWindowAtCenter(btnPacientes, "PacientesView");
     }
 
-    @FXML
-    private void onTouchPressedBtnPedidos(TouchEvent event) {
-    }
 
     @FXML
     private void onActionBtnMedicos(ActionEvent event) {
         openWindowAtCenter(btnMedicos, "MedicoView");
     }
 
-    @FXML
-    private void onTouchPressedBtnCajas(TouchEvent event) {
-    }
 
     @FXML
     private void onActionBtnEspecialidades(ActionEvent event) {
         openWindowAtCenter(btnEspecialidades, "EspecialidadView");
     }
 
-    @FXML
-    private void onTouchPressedBtnFacturacion(TouchEvent event) {
-    }
 
     @FXML
     private void onActionBtnEstadisticas(ActionEvent event) {
         openWindowAtCenter(btnEstadisticas, "EstadisticaView");
     }
 
-    @FXML
-    private void onTouchPressedBtnReportes(TouchEvent event) {
-    }
 
     @FXML
     private void onActionBtnSalir(ActionEvent event) {
+         FlowController.getInstance().clearViewWithAnimation("Left", () -> {
+            });
+            FlowController.getInstance().clearViewWithAnimation("Top", () -> {
+            });
+            FlowController.getInstance().clearViewWithAnimation("Center", () -> {
+                FlowController.getInstance().goView("InicioView");
+            });
     }
 
-    @FXML
-    private void onTouchPressedBtnCerrarSesion(TouchEvent event) {
-    }
     
     private void openWindowAtCenter(MFXButton botonMenu, String nombreVentana) {
 
@@ -118,5 +112,6 @@ public class MenuController extends Controller implements Initializable {
         ventanaActual = nombreVentana;
         FlowController.getInstance().goView(ventanaActual);
     }
+
 
 }

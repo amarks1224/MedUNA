@@ -30,8 +30,8 @@ import javafx.scene.control.Alert;
 
 /**
  * Clase controlador de la ventana de buscar especialidades.
- * @author Angie Marks S.
- * @author Juan Calderón S.
+ * @author Angie Marks 
+ * @author Juan Calderón 
  */
 
 public class BuscarEspecialidadController extends Controller implements Initializable {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.meduna.service;
 
 import cr.ac.una.meduna.model.HolidayDTO;
@@ -14,10 +10,14 @@ import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
 
+
 /**
+ * Servicio de dias festivos, consumo de API
  *
- * @author juans
+ * @author Angie Marks
+ * @author Juan Calderón
  */
+
 public class HolidayService {
     private final HttpClient http = HttpClient.newHttpClient();
     private final Jsonb jsonb = JsonbBuilder.create();

@@ -26,13 +26,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
  * Clase Controler de la ventana de buscar pacientes.
- * @author Angie Marks S.
- * @author Juan Calderón S.
+ * @author Angie Marks
+ * @author Juan Calderón 
  */
 
 public class BuscarPacienteController extends Controller implements Initializable {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.meduna.controller;
 
 import cr.ac.una.meduna.model.EspecialidadDTO;
@@ -37,10 +33,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
 
 /**
- * FXML Controller class
+ * Controlador gestión estadísticas
  *
- * @author juans
+ * @author Angie Marks
+ * @author Juan Calderón
  */
+
 public class EstadisticaController extends Controller implements Initializable {
 
     @FXML

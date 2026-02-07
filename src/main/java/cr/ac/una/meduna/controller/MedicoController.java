@@ -34,6 +34,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 
+/**
+ * Controlador gestión de médicos
+ *
+ * @author Angie Marks
+ * @author Juan Calderón
+ */
+
 public class MedicoController extends Controller implements Initializable {
 
     @FXML 

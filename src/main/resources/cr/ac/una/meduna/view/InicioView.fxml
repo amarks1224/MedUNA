@@ -48,38 +48,14 @@
                   <Insets bottom="40.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
-               <padding>
-                  <Insets bottom="5.0" left="60.0" right="60.0" top="5.0" />
-               </padding>
-               <children>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../../../../RestUNA/RestUNA/src/main/resources/cr/ac/una/restuna/resources/images/Users-Icon-W-48.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
-               <padding>
-                  <Insets bottom="5.0" left="60.0" right="60.0" top="5.0" />
-               </padding>
-               <children>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../../../../RestUNA/RestUNA/src/main/resources/cr/ac/una/restuna/resources/images/Pass-Icon-48.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
             <HBox alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="5.0" left="60.0" right="60.0" top="5.0" />
                </padding>
                <children>
-                  <VBox>
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <Hyperlink fx:id="linkAcercaDe" onAction="#onActionLinkAcercaDe" onTouchPressed="#onTouchPressedLinkRecuperacion" text="Acerca de">
+                        <Hyperlink fx:id="linkAcercaDe" onAction="#onActionLinkAcercaDe" text="Acerca de">
                            <styleClass>
                               <String fx:value="text-white" />
                               <String fx:value="text-bold" />
@@ -87,11 +63,8 @@
                               <String fx:value="text-regular" />
                            </styleClass>
                         </Hyperlink>
-                     </children>
-                  </VBox>
-                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                     <children>
-                        <MFXButton fx:id="btnIngresar" maxWidth="200.0" onAction="#onActionBtnIngresar" onTouchPressed="#onTouchPressedBtnIngresar" styleClass="mfx-button-primary" text="Ingresar" HBox.hgrow="ALWAYS">
+                        <HBox HBox.hgrow="ALWAYS" />
+                        <MFXButton fx:id="btnIngresar" maxWidth="200.0" onAction="#onActionBtnIngresar" styleClass="mfx-button-primary" text="Ingresar" HBox.hgrow="ALWAYS">
                            <padding>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </padding>

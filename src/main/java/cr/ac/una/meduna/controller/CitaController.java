@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.meduna.controller;
 
 import cr.ac.una.meduna.model.CitaDTO;
@@ -49,10 +45,12 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 /**
- * FXML Controller class
+ * Controlador gestión de citas
  *
- * @author juans
+ * @author Angie Marks
+ * @author Juan Calderón
  */
+
 public class CitaController extends Controller implements Initializable {
 
     @FXML
@@ -112,6 +110,55 @@ public class CitaController extends Controller implements Initializable {
     private final java.util.Map<Integer, java.util.Map<java.time.LocalDate, cr.ac.una.meduna.model.HolidayDTO>> feriadosPorAnio = new java.util.HashMap<>();
 
     private final ObservableList<CitaDTO> citas = FXCollections.observableArrayList();
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        configurarTabla();
+        tbCitas.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        configurarCombos();
+
+        cbMedico.valueProperty().addListener((obs, old, neu) -> actualizarDisponibilidad());
+        dpFecha.valueProperty().addListener((obs, old, neu) -> actualizarDisponibilidad());
+
+        cbHoraInicio.valueProperty().addListener((obs, old, neu) -> actualizarHorasFinDisponibles());
+
+        tbCitas.setItems(citas);
+
+        tbCitas.getSelectionModel().selectedItemProperty().addListener((obs, old, sel) -> {
+            if (sel != null) {
+                cargarCitaEnFormulario(sel);
+            }
+        });
+
+        cargarFeriadosAsync(java.time.LocalDate.now().getYear());
+        aplicarDayCellFactory();
+
+        dpFecha.valueProperty().addListener((obs, old, neu) -> {
+            if (neu != null) {
+                cargarFeriadosAsync(neu.getYear());
+            }
+        });
+
+        cargarMedicos();
+        cargarPacientes();
+        cargarCitas();
+
+        limpiarFormulario();
+
+        Platform.runLater(() -> {
+            Window w = root.getScene() != null ? root.getScene().getWindow() : null;
+            if (w != null) {
+                w.focusedProperty().addListener((o, was, isNow) -> {
+                    if (isNow) {
+                        cargarMedicos();
+                        cargarPacientes();
+                    }
+                });
+            }
+        });
+    }
+
 
     private String formatearEstado(String estado) {
         return switch (estado) {
@@ -160,56 +207,7 @@ public class CitaController extends Controller implements Initializable {
         }
     }
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        configurarTabla();
-        tbCitas.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        configurarCombos();
-
-        cbMedico.valueProperty().addListener((obs, old, neu) -> actualizarDisponibilidad());
-        dpFecha.valueProperty().addListener((obs, old, neu) -> actualizarDisponibilidad());
-
-        cbHoraInicio.valueProperty().addListener((obs, old, neu) -> actualizarHorasFinDisponibles());
-
-        tbCitas.setItems(citas);
-
-        tbCitas.getSelectionModel().selectedItemProperty().addListener((obs, old, sel) -> {
-            if (sel != null) {
-                cargarCitaEnFormulario(sel);
-            }
-        });
-
-        cargarFeriadosAsync(java.time.LocalDate.now().getYear());
-        aplicarDayCellFactory();
-
-        dpFecha.valueProperty().addListener((obs, old, neu) -> {
-            if (neu != null) {
-                cargarFeriadosAsync(neu.getYear());
-            }
-        });
-
-        cargarMedicos();
-        cargarPacientes();
-        cargarCitas();
-
-        limpiarFormulario();
-
-        Platform.runLater(() -> {
-            Window w = root.getScene() != null ? root.getScene().getWindow() : null;
-            if (w != null) {
-                w.focusedProperty().addListener((o, was, isNow) -> {
-                    if (isNow) {
-                        cargarMedicos();
-                        cargarPacientes();
-                    }
-                });
-            }
-        });
-    }
-
+    
     private void configurarTabla() {
         colId.setCellValueFactory(new PropertyValueFactory<>("idCita"));
         colMedico.setCellValueFactory(cell -> {

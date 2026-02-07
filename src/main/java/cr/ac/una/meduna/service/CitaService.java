@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cr.ac.una.meduna.service;
 
 import cr.ac.una.meduna.model.CitaDTO;
@@ -21,8 +17,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Servicio de citas
  *
- * @author juans
+ * @author Angie Marks
+ * @author Juan Calderón
  */
 public class CitaService {
 
