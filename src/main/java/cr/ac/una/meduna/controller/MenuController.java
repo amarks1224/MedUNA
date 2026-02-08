@@ -1,6 +1,7 @@
 package cr.ac.una.meduna.controller;
 
 import cr.ac.una.meduna.util.FlowController;
+import cr.ac.una.meduna.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +31,7 @@ public class MenuController extends Controller implements Initializable {
     private MFXButton btnEstadisticas;
     @FXML
     private MFXButton btnSalir;
-    
+
     private ResourceBundle bundle;
     private String ventanaActual;
     private MFXButton botonMenuActual;
@@ -42,18 +43,18 @@ public class MenuController extends Controller implements Initializable {
     private Label lblTitulo1;
     @FXML
     private Label lblTitulo11;
-  
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         bundle = rb;
         this.ventanaActual = "";
-    }    
-    
-     @Override
+    }
+
+    @Override
     public void initialize() {
         super.initialize();
 
-    }    
+    }
 
     @FXML
     private void onActionBtnCitas(ActionEvent event) {
@@ -65,37 +66,35 @@ public class MenuController extends Controller implements Initializable {
         openWindowAtCenter(btnPacientes, "PacientesView");
     }
 
-
     @FXML
     private void onActionBtnMedicos(ActionEvent event) {
         openWindowAtCenter(btnMedicos, "MedicoView");
     }
-
 
     @FXML
     private void onActionBtnEspecialidades(ActionEvent event) {
         openWindowAtCenter(btnEspecialidades, "EspecialidadView");
     }
 
-
     @FXML
     private void onActionBtnEstadisticas(ActionEvent event) {
         openWindowAtCenter(btnEstadisticas, "EstadisticaView");
     }
 
-
     @FXML
     private void onActionBtnSalir(ActionEvent event) {
-         FlowController.getInstance().clearViewWithAnimation("Left", () -> {
-            });
-            FlowController.getInstance().clearViewWithAnimation("Top", () -> {
-            });
-            FlowController.getInstance().clearViewWithAnimation("Center", () -> {
-                FlowController.getInstance().goView("InicioView");
-            });
+
+        boolean confirmar = new Mensaje().showConfirmation(
+                "Salir del sistema",
+                getStage(),
+                "¿Desea cerrar la aplicación?"
+        );
+
+        if (confirmar) {
+            System.exit(0);
+        }
     }
 
-    
     private void openWindowAtCenter(MFXButton botonMenu, String nombreVentana) {
 
         if (nombreVentana.equals(ventanaActual)) {
@@ -112,6 +111,5 @@ public class MenuController extends Controller implements Initializable {
         ventanaActual = nombreVentana;
         FlowController.getInstance().goView(ventanaActual);
     }
-
 
 }

@@ -10,9 +10,9 @@ package cr.ac.una.meduna.model;
  * @author juans
  */
 public class HolidayDTO {
-    private String date;      // "2026-01-01"
-    private String localName; // nombre local
-    private String name;      // nombre en inglés
+    private String date;      
+    private String localName; 
+    private String name;      
 
     public HolidayDTO() {}
 
