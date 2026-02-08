@@ -93,7 +93,6 @@ public class BuscarEspecialidadController extends Controller implements Initiali
           clNombre.setCellValueFactory(cd -> cd.getValue().nombreProperty());
           clDuracion.setCellValueFactory(cd -> cd.getValue().duracionProperty().asObject());        
           clDescripcion.setCellValueFactory(cd -> cd.getValue().descripcionProperty());
-
           clNombre.setPrefWidth(200);
           clDuracion.setPrefWidth(200);
           clDescripcion.setPrefWidth(200);

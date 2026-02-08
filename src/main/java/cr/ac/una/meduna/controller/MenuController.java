@@ -31,10 +31,6 @@ public class MenuController extends Controller implements Initializable {
     private MFXButton btnEstadisticas;
     @FXML
     private MFXButton btnSalir;
-
-    private ResourceBundle bundle;
-    private String ventanaActual;
-    private MFXButton botonMenuActual;
     @FXML
     private Button btnMenu;
     @FXML
@@ -43,6 +39,10 @@ public class MenuController extends Controller implements Initializable {
     private Label lblTitulo1;
     @FXML
     private Label lblTitulo11;
+    
+    private ResourceBundle bundle;
+    private String ventanaActual;
+    private MFXButton botonMenuActual;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,7 +53,6 @@ public class MenuController extends Controller implements Initializable {
     @Override
     public void initialize() {
         super.initialize();
-
     }
 
     @FXML

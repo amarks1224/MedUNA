@@ -51,14 +51,12 @@ public class EstadisticaController extends Controller implements Initializable {
     private ComboBox<EspecialidadDTO> cbEspecialidad;
     @FXML
     private ComboBox<String> cbReporte;
-
     @FXML
     private TableView<EstadisticaDTO> tbvStats;
     @FXML
     private TableColumn<EstadisticaDTO, String> colCategoria;
     @FXML
     private TableColumn<EstadisticaDTO, Number> colCantidad;
-
     @FXML
     private StackPane chartContainer;
     @FXML

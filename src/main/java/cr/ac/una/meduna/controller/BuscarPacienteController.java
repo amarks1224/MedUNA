@@ -116,7 +116,7 @@ public class BuscarPacienteController extends Controller implements Initializabl
         }
     }
     
-      private void configurarEventos() {
+    private void configurarEventos() {
         keyEnter = (KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 btnBuscar.fire();

@@ -402,7 +402,7 @@ public class MedicoController extends Controller implements Initializable {
         }
     }
     
-      private void buscarMedico(){
+    private void buscarMedico(){
         FlowController.getInstance().goViewInWindowModal("BuscarMedicoView", getStage(), false);
         BuscarMedicoController buscarMedicoController = (BuscarMedicoController) FlowController.getInstance().getController("BuscarMedicoView");
 

@@ -12,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**

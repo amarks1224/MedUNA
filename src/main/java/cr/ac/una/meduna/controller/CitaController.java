@@ -48,45 +48,63 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+/**
+ * Clase controlador para la gestión de citas.
+ * @author Angie Marks
+ * @author Juan Calderón 
+ */
+
 public class CitaController extends Controller implements Initializable {
 
-    @FXML private TableView<CitaDTO> tbCitas;
-    @FXML private TableColumn<CitaDTO, String> colId;
-    @FXML private TableColumn<CitaDTO, String> colMedico;
-    @FXML private TableColumn<CitaDTO, String> colPaciente;
-    @FXML private TableColumn<CitaDTO, Object> colFecha;
-    @FXML private TableColumn<CitaDTO, Object> colHoraIni;
-    @FXML private TableColumn<CitaDTO, Object> colHoraFin;
-    @FXML private TableColumn<CitaDTO, String> colEstado;
-
-    @FXML private TextField txtIdCita;
-    @FXML private ComboBox<MedicoDTO> cbMedico;
-    @FXML private ComboBox<PacienteDTO> cbPaciente;
-    @FXML private DatePicker dpFecha;
-    @FXML private ComboBox<LocalTime> cbHoraInicio;
-    @FXML private ComboBox<LocalTime> cbHoraFin;
-    @FXML private TextField txtMotivo;
-    @FXML private ComboBox<String> cbEstado;
-    @FXML private TextArea txtCancelacion;
-    @FXML private AnchorPane root;
+    @FXML 
+    private TableView<CitaDTO> tbCitas;
+    @FXML 
+    private TableColumn<CitaDTO, String> colId;
+    @FXML 
+    private TableColumn<CitaDTO, String> colMedico;
+    @FXML 
+    private TableColumn<CitaDTO, String> colPaciente;
+    @FXML 
+    private TableColumn<CitaDTO, Object> colFecha;
+    @FXML 
+    private TableColumn<CitaDTO, Object> colHoraIni;
+    @FXML 
+    private TableColumn<CitaDTO, Object> colHoraFin;
+    @FXML 
+    private TableColumn<CitaDTO, String> colEstado;
+    @FXML 
+    private TextField txtIdCita;
+    @FXML 
+    private ComboBox<MedicoDTO> cbMedico;
+    @FXML 
+    private ComboBox<PacienteDTO> cbPaciente;
+    @FXML 
+    private DatePicker dpFecha;
+    @FXML 
+    private ComboBox<LocalTime> cbHoraInicio;
+    @FXML 
+    private ComboBox<LocalTime> cbHoraFin;
+    @FXML 
+    private TextField txtMotivo;
+    @FXML 
+    private ComboBox<String> cbEstado;
+    @FXML 
+    private TextArea txtCancelacion;
+    @FXML 
+    private AnchorPane root;
 
     private final Mensaje mensaje = new Mensaje();
     private final Shake shake = new Shake();
-
     private final CitaService citaService = new CitaService();
     private final MedicoService medicoService = new MedicoService();
     private final PacienteService pacienteService = new PacienteService();
-
     private final Map<Long, String> medicoNombreMap = new HashMap<>();
     private final Map<Long, String> pacienteNombreMap = new HashMap<>();
-
     private final ObservableList<CitaDTO> citas = FXCollections.observableArrayList();
     private List<CitaDTO> citasOcupadas = List.of();
-
     private static final LocalTime HORA_APERTURA = LocalTime.of(7, 0);
     private static final LocalTime HORA_CIERRE   = LocalTime.of(18, 0);
     private static final int BLOQUE_MINUTOS = 30;
-
     private final FeriadoDatePickerHelper feriadoHelper = new FeriadoDatePickerHelper(new HolidayService());
 
     @Override

@@ -15,12 +15,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-
 import java.net.URL;
 import java.time.*;
 import java.time.format.TextStyle;
 import java.util.*;
 import java.util.stream.Collectors;
+
+/**
+ * Clase Controler de la ventana del calendario de citas.
+ * @author Angie Marks
+ * @author Juan Calderón 
+ */
 
 public class CitaCalendarioController implements Initializable {
 
@@ -30,7 +35,6 @@ public class CitaCalendarioController implements Initializable {
     private Label lblFechaSeleccionada;
     @FXML
     private GridPane gridCalendario;
-
     @FXML
     private TableView<CitaDTO> tbvCitasDia;
     @FXML
@@ -44,17 +48,12 @@ public class CitaCalendarioController implements Initializable {
 
     private final CitaService citaService = new CitaService();
     private final PacienteService pacienteService = new PacienteService();
-
     private MedicoDTO medicoSeleccionado;
-
     private YearMonth mesActual = YearMonth.now();
     private LocalDate fechaSeleccionada = LocalDate.now();
-
     private Map<LocalDate, List<CitaDTO>> citasPorDia = new HashMap<>();
     private Map<Long, String> pacienteNombrePorId = new HashMap<>();
-
     private Map<Integer, Map<LocalDate, HolidayDTO>> feriadosPorAnio = new HashMap<>();
-
     private final ObservableList<CitaDTO> citasDelDia = FXCollections.observableArrayList();
 
     @Override
@@ -345,4 +344,5 @@ public class CitaCalendarioController implements Initializable {
     private void onActionCerrar() {
         lblMes.getScene().getWindow().hide();
     }
+    
 }
